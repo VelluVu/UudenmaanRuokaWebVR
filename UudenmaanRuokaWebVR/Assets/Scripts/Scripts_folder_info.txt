@@ -1,8 +1,0 @@
---------------Script Folder--------------
-=========================================
-
-	Game scripts here, 
-
-	complete systems preferably 
-
-	into seperate folders

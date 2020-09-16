@@ -1,0 +1,8 @@
+------------------Resources Folder---------------
+=================================================
+
+	Networked objects and other objects
+
+	that need to be loaded runtime through 
+
+	script must be in this folder!

@@ -268,6 +268,7 @@ namespace WebXR
             return controllerPosition;
         }
 
+        [Obsolete]
         void Update()
         {
             // Use Unity XR Input when enabled. When using WebXR, updates are performed onControllerUpdate.

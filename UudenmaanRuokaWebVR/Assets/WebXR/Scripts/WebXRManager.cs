@@ -117,6 +117,7 @@ namespace WebXR
             }
         }
 
+        [System.Obsolete]
         private void SetTrackingSpaceType()
         {
             if (XRDevice.isPresent)

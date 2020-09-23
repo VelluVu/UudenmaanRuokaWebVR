@@ -4,5 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
-  m_configObjects: {}
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/VelluTestScene.unity
+    guid: 83f00032518238c4180aa6a3ade096cd
+  m_configObjects:
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 11de3b6c9b6eaa648a6d2e6caf3d524a,
+      type: 2}

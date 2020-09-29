@@ -23,3 +23,23 @@ MonoBehaviour:
     gamepadIsButton: 1
     unityInputName: GripRight
     unityInputIsButton: 0
+  - actionName: DpadR
+    gamepadId: 2
+    gamepadIsButton: 1
+    unityInputName: DpadRight
+    unityInputIsButton: 0
+  - actionName: DpadL
+    gamepadId: 3
+    gamepadIsButton: 1
+    unityInputName: DpadLeft
+    unityInputIsButton: 0
+  - actionName: DpadU
+    gamepadId: 4
+    gamepadIsButton: 1
+    unityInputName: DpadUp
+    unityInputIsButton: 0
+  - actionName: DpadD
+    gamepadId: 5
+    gamepadIsButton: 1
+    unityInputName: DpadDown
+    unityInputIsButton: 0

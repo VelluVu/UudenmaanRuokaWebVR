@@ -315,6 +315,7 @@ GameObject:
   - component: {fileID: 9187899959574153842}
   - component: {fileID: 2277305930852187346}
   - component: {fileID: 862079731}
+  - component: {fileID: 344289138}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -376,12 +377,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75cad2c94ee96cc428516563df509725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debugging: 1
   raycasters:
   - {fileID: 2138090726064940614}
   - {fileID: 2138090726064940613}
-  lines:
-  - {fileID: 2138090726064940628}
-  - {fileID: 2138090726064940627}
+  controllers:
+  - {fileID: 7649296307075782314}
+  - {fileID: 1840015880735593117}
+  teleportActivationDelay: 0.25
+--- !u!114 &344289138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2215103644070839746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b92d3b53129286549b436633cbf481c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2248469632568479673
 GameObject:
   m_ObjectHideFlags: 0
@@ -948,12 +963,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29c4877f6d751214b89fa41e19bb451a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debugging: 0
   active: 0
   lineRenderer: {fileID: 0}
   hitLayer:
     serializedVersion: 2
     m_Bits: 256
-  maxDistance: 5
+  maxDistance: 10
 --- !u!120 &2138090726064940627
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1752,12 +1768,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29c4877f6d751214b89fa41e19bb451a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debugging: 0
   active: 0
   lineRenderer: {fileID: 0}
   hitLayer:
     serializedVersion: 2
     m_Bits: 256
-  maxDistance: 5
+  maxDistance: 10
 --- !u!120 &2138090726064940628
 LineRenderer:
   m_ObjectHideFlags: 0

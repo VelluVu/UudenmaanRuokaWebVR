@@ -22,6 +22,7 @@ namespace WebXR
         public float DefaultHeight = 1.2f;
 
         [Tooltip("Represents the size of physical space available for XR.")]
+        [System.Obsolete]
         public TrackingSpaceType TrackingSpace = TrackingSpaceType.RoomScale;
 
         private static string GlobalName = "WebXRCameraSet";
@@ -218,6 +219,7 @@ namespace WebXR
             return newArray;
         }
 
+        [System.Obsolete]
         void Start()
         {
 #if UNITY_EDITOR

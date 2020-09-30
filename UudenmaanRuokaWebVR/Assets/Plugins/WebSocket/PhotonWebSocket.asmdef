@@ -1,0 +1,16 @@
+{
+    "name": "PhotonWebSocket",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [
+        "WSA",
+        "WebGL"
+    ],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

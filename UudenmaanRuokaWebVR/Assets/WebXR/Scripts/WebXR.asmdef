@@ -1,7 +1,6 @@
 {
     "name": "WebXR",
     "references": [],
-    "optionalUnityReferences": [],
     "includePlatforms": [
         "Editor",
         "WebGL"
@@ -11,5 +10,7 @@
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,
-    "defineConstraints": []
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

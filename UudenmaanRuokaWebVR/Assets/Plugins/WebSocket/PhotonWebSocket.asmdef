@@ -2,10 +2,7 @@
     "name": "PhotonWebSocket",
     "references": [],
     "includePlatforms": [],
-    "excludePlatforms": [
-        "WSA",
-        "WebGL"
-    ],
+    "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
     "precompiledReferences": [],

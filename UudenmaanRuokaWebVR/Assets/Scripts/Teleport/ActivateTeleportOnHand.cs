@@ -61,6 +61,9 @@ public class ActivateTeleportOnHand : MonoBehaviour
     void Update()
     {
 
+        if (!XRDevice.isPresent)
+            return;
+
         if (Physics.Raycast(raycasters[1].transform.position, raycasters[1].transform.forward, raycasters[1].maxDistance, raycasters[1].hitLayer))
         {
             if (!raycasters[1].active && controllers[1].GetButtonDown("Trigger"))

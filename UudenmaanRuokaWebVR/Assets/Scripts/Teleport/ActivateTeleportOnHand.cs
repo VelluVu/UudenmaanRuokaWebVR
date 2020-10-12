@@ -10,12 +10,14 @@ using WebXR;
 /// and 
 /// delays the teleport trigger 
 /// so 
-/// player doesn't instantly/accidently be able to teleport while aiming the Teleport area. 
+/// player doesn't instantly/accidently be able to teleport while aiming the Teleport area.  
+/// 
+/// This script no longer used , somehow not working in webgl.
 /// </summary>
 public class ActivateTeleportOnHand : MonoBehaviour
 {
     public bool debugging = true;
-    public TeleportRaycast[] raycasters;
+    public PhysicsRaycaster[] raycasters;
     //public LineRenderer[] lines;
     public WebXRController[] controllers;
     public float teleportActivationDelay = 0.5f;
@@ -30,8 +32,8 @@ public class ActivateTeleportOnHand : MonoBehaviour
         
         if (raycasters[1] == null || raycasters[0] == null)
         {
-            raycasters[0] = transform.GetChild(0).gameObject.GetComponent<TeleportRaycast>();
-            raycasters[1] = transform.GetChild(1).gameObject.GetComponent<TeleportRaycast>();
+            raycasters[0] = transform.GetChild(0).gameObject.GetComponent<PhysicsRaycaster>();
+            raycasters[1] = transform.GetChild(1).gameObject.GetComponent<PhysicsRaycaster>();
 
             if (raycasters[1] == null || raycasters[0] == null)
             {
@@ -61,19 +63,19 @@ public class ActivateTeleportOnHand : MonoBehaviour
     void Update()
     {
 
-        if (!XRDevice.isPresent)
+        /*if (!XRDevice.isPresent)
             return;
-
+        */
         if (Physics.Raycast(raycasters[1].transform.position, raycasters[1].transform.forward, raycasters[1].maxDistance, raycasters[1].hitLayer))
         {
-            if (!raycasters[1].active && controllers[1].GetButtonDown("Trigger"))
+            if (!raycasters[1].active && (controllers[1].GetButtonDown("Trigger") || controllers[1].GetButtonDown("Grip")))
             {
                 this.RestartCoroutine(ActivateTeleport(raycasters[1], raycasters[0], teleportActivationDelay), ref activateTeleport);
             }
         }
         if (Physics.Raycast(raycasters[0].transform.position, raycasters[0].transform.forward, raycasters[0].maxDistance, raycasters[0].hitLayer))
         {
-            if (!raycasters[0].active && controllers[0].GetButtonDown("Trigger"))
+            if (!raycasters[0].active && (controllers[0].GetButtonDown("Trigger") || controllers[1].GetButtonDown("Grip")))
             {
                 this.RestartCoroutine(ActivateTeleport(raycasters[0], raycasters[1], teleportActivationDelay), ref activateTeleport);
             }
@@ -88,7 +90,7 @@ public class ActivateTeleportOnHand : MonoBehaviour
     /// <param name="previousCaster">hand that was previously active</param>
     /// <param name="time">time to wait till the teleport activation</param>
     /// <returns></returns>
-    IEnumerator ActivateTeleport(TeleportRaycast caster, TeleportRaycast previousCaster, float time)
+    IEnumerator ActivateTeleport(PhysicsRaycaster caster, PhysicsRaycaster previousCaster, float time)
     {
         //line.positionCount = 0;
         previousCaster.active = false;

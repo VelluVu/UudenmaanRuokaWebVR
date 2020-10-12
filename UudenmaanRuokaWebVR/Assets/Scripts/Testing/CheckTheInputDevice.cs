@@ -16,8 +16,16 @@ public class CheckTheInputDevice : MonoBehaviour
 
     private void Start()
     {
-        device = InputDevices.GetDeviceAtXRNode(XRNode.Head);
-        Debug.Log("CONNECTED DEVICE NAME IS : " + device.name);
-        currentDevice = device.name;
+        if (!XRDevice.isPresent)
+        {
+
+            currentDevice = "PC";
+        }
+        else
+        {
+            device = InputDevices.GetDeviceAtXRNode(XRNode.Head);
+            Debug.Log("CONNECTED DEVICE NAME IS : " + device.name);
+            currentDevice = device.name;
+        }
     }
 }

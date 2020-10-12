@@ -26,6 +26,13 @@ namespace WebXR
 
         void OnEnable()
         {
+            if(cameraMain == null || cameraL == null || cameraR == null)
+            {
+                cameraMain = transform.GetChild(0).GetComponent<Camera>();
+                cameraL = transform.GetChild(1).GetComponent<Camera>();
+                cameraR = transform.GetChild(2).GetComponent<Camera>();
+            }
+
             WebXRManager.Instance.OnXRChange += onVRChange;
             WebXRManager.Instance.OnHeadsetUpdate += onHeadsetUpdate;
 

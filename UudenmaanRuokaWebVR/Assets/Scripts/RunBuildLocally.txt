@@ -1,0 +1,8 @@
+Set Mozilla Firefox as default browser, and clean install newest mozilla firefox browser.
+
+By doing these I managed to run the build locally.
+
+1. Build & Run from Unity Editor
+2. Press Continue on the popup & Allow VR
+3. Click goggle icon bottom right corner
+4. Refresh page

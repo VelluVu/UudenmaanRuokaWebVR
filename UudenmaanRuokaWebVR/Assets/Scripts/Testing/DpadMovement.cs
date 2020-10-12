@@ -29,6 +29,8 @@ public class DpadMovement : MonoBehaviour
 
     private void Update()
     {
+        if (!XRDevice.isPresent)
+            return;
         if (c.GetButton("DpadR"))
         {
             //Debug.Log("DpadR detected " + c.GetButton("DpadR"));

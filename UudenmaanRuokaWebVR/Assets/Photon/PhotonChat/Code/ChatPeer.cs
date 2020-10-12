@@ -15,10 +15,10 @@ namespace Photon.Chat
     using System.Collections.Generic;
     using ExitGames.Client.Photon;
 
-    #if SUPPORTED_UNITY || NETFX_CORE
+#if SUPPORTED_UNITY || NETFX_CORE
     using Hashtable = ExitGames.Client.Photon.Hashtable;
     using SupportClass = ExitGames.Client.Photon.SupportClass;
-    #endif
+#endif
 
 
     /// <summary>
@@ -55,7 +55,7 @@ namespace Photon.Chat
         private void ConfigUnitySockets()
         {
             Type websocketType = null;
-            #if UNITY_XBOXONE && !UNITY_EDITOR
+#if UNITY_XBOXONE && !UNITY_EDITOR
             websocketType = Type.GetType("ExitGames.Client.Photon.SocketNativeSource, PhotonWebSocket", false);
             if (websocketType == null)
             {
@@ -69,7 +69,9 @@ namespace Photon.Chat
             {
                 UnityEngine.Debug.LogError("UNITY_XBOXONE is defined but peer could not find SocketNativeSource. Check your project files to make sure the native WSS implementation is available. Won't connect.");
             }
-            #else
+#else
+
+
             // to support WebGL export in Unity, we find and assign the SocketWebTcp class (if it's in the project).
             // alternatively class SocketWebTcp might be in the Photon3Unity3D.dll
             websocketType = Type.GetType("ExitGames.Client.Photon.SocketWebTcp, PhotonWebSocket", false);
@@ -81,7 +83,7 @@ namespace Photon.Chat
             {
                 websocketType = Type.GetType("ExitGames.Client.Photon.SocketWebTcp, Assembly-CSharp", false);
             }
-            #endif
+#endif
 
             if (websocketType != null)
             {
@@ -89,10 +91,10 @@ namespace Photon.Chat
                 this.SocketImplementationConfig[ConnectionProtocol.WebSocketSecure] = websocketType;
             }
 
-            #if NET_4_6 && (UNITY_EDITOR || !ENABLE_IL2CPP)
+#if NET_4_6 && (UNITY_EDITOR || !ENABLE_IL2CPP)
             this.SocketImplementationConfig[ConnectionProtocol.Udp] = typeof(SocketUdpAsync);
             this.SocketImplementationConfig[ConnectionProtocol.Tcp] = typeof(SocketTcpAsync);
-            #endif
+#endif
         }
 
 
@@ -110,10 +112,10 @@ namespace Photon.Chat
                 case ConnectionProtocol.Udp:
                 case ConnectionProtocol.Tcp:
                     return string.Format("{0}:{1}", NameServerHost, protocolPort);
-                #if RHTTP
+#if RHTTP
                 case ConnectionProtocol.RHttp:
                     return NameServerHttp;
-                #endif
+#endif
                 case ConnectionProtocol.WebSocket:
                     return string.Format("ws://{0}:{1}", NameServerHost, protocolPort);
                 case ConnectionProtocol.WebSocketSecure:
@@ -159,7 +161,7 @@ namespace Photon.Chat
 
                 if (authValues.AuthType != CustomAuthenticationType.None)
                 {
-                    opParameters[ParameterCode.ClientAuthenticationType] = (byte) authValues.AuthType;
+                    opParameters[ParameterCode.ClientAuthenticationType] = (byte)authValues.AuthType;
                     if (!string.IsNullOrEmpty(authValues.Token))
                     {
                         opParameters[ParameterCode.Secret] = authValues.Token;

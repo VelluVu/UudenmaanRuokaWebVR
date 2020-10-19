@@ -13,7 +13,7 @@ public class PhysicsRaycaster : MonoBehaviour
 {
     public bool debugging = true;
     public bool active = true;
-  
+
     WebXRController controller;
     DesertControllerInteraction pickUpInteraction;
     RaycastHit hit;
@@ -34,7 +34,7 @@ public class PhysicsRaycaster : MonoBehaviour
         pickUpInteraction = GetComponent<DesertControllerInteraction>();
         lineRenderer.positionCount = 0;
         teleMask = LayerMask.NameToLayer("Teleport");
-        
+
     }
 
     /// <summary>
@@ -46,31 +46,38 @@ public class PhysicsRaycaster : MonoBehaviour
         {
             if (Physics.Raycast(transform.position, transform.forward, out hit, maxDistance, hitLayer))
             {
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
+                {
+                    HideRay();
+                    return;
+                }
+
 
                 DrawRay(transform.position, hit.point);
 
                 //Distant picks up interactable if pointing interactable
-                if(hit.collider.gameObject.CompareTag("Interactable"))
+                if (hit.collider.gameObject.CompareTag("Interactable"))
                 {
                     if (controller.GetButtonDown("Trigger") || controller.GetButtonDown("Grip"))
                     {
-                        pickUpInteraction.DistantPickUp(hit.collider);                      
-                    }                     
+                        pickUpInteraction.DistantPickUp(hit.collider);
+                    }
                 }
 
                 if (hit.collider.gameObject.layer == teleMask) // Mozilla WebXR exporter for some reason reguires both down and up checks.
                 {
                     if (controller.GetButtonDown("Trigger") || controller.GetButtonDown("Grip"))
                     {
-                        
+
                     }
                     if (controller.GetButtonUp("Trigger") || controller.GetButtonUp("Grip"))
                     {
                         Teleport(hit.point);
-                    }                 
-                }
+                    }
 
+                }
             }
+
             else
             {
                 HideRay();

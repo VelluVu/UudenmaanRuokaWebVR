@@ -1,0 +1,227 @@
+fileFormatVersion: 2
+guid: fac98befa5f08c546a465d9fb1f06ee8
+ModelImporter:
+  serializedVersion: 19301
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Banneri_pysty.001
+    second: {fileID: 2100000, guid: 28529825042506f4e9f18cd4b986f1ed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glass
+    second: {fileID: 2100000, guid: 5149f9656300833428cbd5d1a4ae15ef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lattia_harmaa_lankku
+    second: {fileID: 2100000, guid: a3dea2bea680ece4ba67429cec096b6c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Loisteputki_glow
+    second: {fileID: 2100000, guid: 7e62af35e613db648bb6790454797b1a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Loisteputkikatto
+    second: {fileID: 2100000, guid: fe69b7da84f4b3442842122f2489afea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: METALLI_KAHVA
+    second: {fileID: 2100000, guid: 6c4aa2cd99d8bb648a252294531bd926, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MUOVI_musta
+    second: {fileID: 2100000, guid: 90cf20e1e8c2ee84ba8215c6268b61b6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metalli_ritiala_white
+    second: {fileID: 2100000, guid: 3e0ccb23f5f84924cbd6c801a247779e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Muovi_pakastin_vaal_harmaaa
+    second: {fileID: 2100000, guid: f76d22bb287cff14486c2ec70a465aa6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: None
+    second: {fileID: 2100000, guid: bb92faeefa2f647458bd5a37bf4e74fa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ovi
+    second: {fileID: 2100000, guid: 9a8bdc49703c3c5488f11e287d1115c5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ovi.001
+    second: {fileID: 2100000, guid: 4a60c8328ebb6a14a9128f653adf7c97, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Puu_hyllyt
+    second: {fileID: 2100000, guid: 139916b1153427347995b6295ff4167b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Puu_hyllyt.011
+    second: {fileID: 2100000, guid: 26a44e14b20aeea4a8d4a326b37828c3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Puu_hyllyt.012
+    second: {fileID: 2100000, guid: cb3aec92e45cb7249917c3dd8df59930, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Puu_laatikkon.001
+    second: {fileID: 2100000, guid: e0b7ecb157ca2f240a1b1e07877106c0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Puu_laatikkon.002
+    second: {fileID: 2100000, guid: 3f80b3cf3696d0e40a9b53b81ffc9356, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Puu_laatikkon.003
+    second: {fileID: 2100000, guid: 94fd011bf1e89bf429f2722d074201d7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Sein\xE4_valkoinen"
+    second: {fileID: 2100000, guid: 86b123df0a9b8a748b09b3142aecba66, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Valkoinen_karmi
+    second: {fileID: 2100000, guid: 632534e843e0ad54197c871a5133e693, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Valkoinen_karmi.006
+    second: {fileID: 2100000, guid: 8b8e96df8570a54499ea7fb882f6a109, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Valkoinen_karmi.013
+    second: {fileID: 2100000, guid: ec12dbd03d5ff8a4c9a65a6d2d0cadb0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Valkoinen_karmi.014
+    second: {fileID: 2100000, guid: 9ff4e26b60a90f34395b2e2a5d4441a4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Valkoinen_karmi.015
+    second: {fileID: 2100000, guid: 9813a9e3cad41d74499e74733b8a8bc7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Valkoinen_karmi.016
+    second: {fileID: 2100000, guid: 7358e5593d2c83a43a7099bb53857219, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Vihre\xE4_sein\xE4"
+    second: {fileID: 2100000, guid: 85ba9a0432678064b98fd3de896d48b3, type: 2}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -29,17 +29,17 @@ MonoBehaviour:
     unityInputName: DpadRightL
     unityInputIsButton: 0
   - actionName: DpadL
-    gamepadId: 3
+    gamepadId: 2
     gamepadIsButton: 1
     unityInputName: DpadLeftL
     unityInputIsButton: 0
   - actionName: DpadU
-    gamepadId: 4
+    gamepadId: 3
     gamepadIsButton: 1
     unityInputName: DpadUpL
     unityInputIsButton: 0
   - actionName: DpadD
-    gamepadId: 5
+    gamepadId: 3
     gamepadIsButton: 1
     unityInputName: DpadDownL
     unityInputIsButton: 0

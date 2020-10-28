@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using WebXR;
 
+/// <summary>
+/// Class for altering the offset values for tracking points of rig and moves the body with head.
+/// </summary>
 [System.Serializable]
 public class VRMap
 {
@@ -18,36 +21,32 @@ public class VRMap
     }
 }
 
+/// <summary>
+/// This class is moving the body with the player,
+/// </summary>
 public class VRRig : MonoBehaviour
 {
     public VRMap head;
     public VRMap leftHand;
     public VRMap rightHand;
 
-    //float height;
-    public Transform controller;
-    //public Transform body;
     public Transform headConstraint;
     public Vector3 headBodyOffset;
- 
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         headBodyOffset = transform.position - headConstraint.position;
-        //height = -headConstraint.position.y*0.4f;
-        //head.trackingPositionOffset.y = height;
+     
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void FixedUpdate()
     {
-        transform.position = new Vector3(head.vrTarget.position.x, head.vrTarget.position.y * 0.6f, head.vrTarget.position.z ) - controller.forward * 0.1f;
-        transform.rotation = controller.rotation;
-       
-        //transform.forward = Vector3.ProjectOnPlane(headConstraint.up, Vector3.up).normalized;
-        //transform.position = headConstraint.position + headBodyOffset;
-        //transform.forward = Vector3.ProjectOnPlane(headConstraint.up, Vector3.up).normalized;
 
+        transform.position = headConstraint.position + headBodyOffset;
+        transform.forward = new Vector3(headConstraint.forward.x, transform.forward.y, headConstraint.forward.z);
+        
         head.Map();
         leftHand.Map();
         rightHand.Map();

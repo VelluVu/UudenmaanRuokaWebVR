@@ -10,15 +10,27 @@ using UnityEditor;
 /// 
 /// Photons Lobby callbacks.
 /// </summary>
-public class LobbyCreation : MonoBehaviourPunCallbacks
+public class LobbyCallbacks : MonoBehaviourPunCallbacks
 {
+
+    public delegate void LobbyDelegate();
+    public static event LobbyDelegate onSuccessfullyJoinedLobby;
 
     /// <summary>
     /// Joins random room, if fails triggers the on join random room failed callback.
     /// </summary>
     public void JoinSomeRandomRoom()
     {
-        PhotonNetwork.JoinRandomRoom();
+        
+        if (ConnectServerCallbacks.isConnecting)
+        {
+            Debug.Log("Joining Random Room");
+            PhotonNetwork.JoinRandomRoom();        
+        }
+        else
+        {         
+            ConnectServerCallbacks.isConnecting = PhotonNetwork.ConnectUsingSettings();
+        }
     }
 
     public override void OnJoinedLobby()
@@ -27,7 +39,8 @@ public class LobbyCreation : MonoBehaviourPunCallbacks
         PhotonNetwork.LocalPlayer.NickName = PlayerInformation.Name;
         Debug.Log("You entered into the lobby.");
         //Attempts to join random room, TODO: Change this to happen on UI button press.
-        JoinSomeRandomRoom();
+        //JoinSomeRandomRoom();
+        onSuccessfullyJoinedLobby?.Invoke();
     }
 
     public override void OnLeftLobby()

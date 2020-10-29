@@ -11,12 +11,13 @@ using UnityEngine;
 /// 
 /// Photons server connection callbacks.
 /// </summary>
-public class ConnectMaster : MonoBehaviourPunCallbacks
+public class ConnectServerCallbacks : MonoBehaviourPunCallbacks
 {
-    
+    public static bool isConnecting;
+
     private void Start()
-    {       
-        PhotonNetwork.ConnectUsingSettings();
+    {
+        isConnecting = PhotonNetwork.ConnectUsingSettings();
     }
 
     public override void OnConnected()
@@ -27,8 +28,8 @@ public class ConnectMaster : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Debug.Log("Connected to the Photon Server and ready for other tasks!");
-
         PhotonNetwork.JoinLobby();
+       
     }
 
     public override void OnCustomAuthenticationFailed(string debugMessage)
@@ -44,6 +45,7 @@ public class ConnectMaster : MonoBehaviourPunCallbacks
     public override void OnDisconnected(DisconnectCause cause)
     {
         Debug.Log("Disconnected from the Photon server because of " + cause);
+        isConnecting = false;
     }
 
     public override void OnRegionListReceived(RegionHandler regionHandler)

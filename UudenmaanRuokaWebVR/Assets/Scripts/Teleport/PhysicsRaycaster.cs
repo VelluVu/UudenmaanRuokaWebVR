@@ -16,11 +16,13 @@ public class PhysicsRaycaster : MonoBehaviour
 
     WebXRController controller;
     DesertControllerInteraction pickUpInteraction;
+    public RaycastToUI uiPointer;
     RaycastHit hit;
 
     public LineRenderer lineRenderer;
     public LayerMask hitLayer;
     private LayerMask teleMask;
+    private LayerMask uiMask;
 
     public float maxDistance = 10f;
 
@@ -34,7 +36,11 @@ public class PhysicsRaycaster : MonoBehaviour
         pickUpInteraction = GetComponent<DesertControllerInteraction>();
         lineRenderer.positionCount = 0;
         teleMask = LayerMask.NameToLayer("Teleport");
-
+        uiMask = LayerMask.NameToLayer("UI");
+        if(transform.childCount > 0)
+        {
+            uiPointer = transform.GetChild(0).GetComponent<RaycastToUI>();
+        }
     }
 
     /// <summary>
@@ -51,7 +57,6 @@ public class PhysicsRaycaster : MonoBehaviour
                     HideRay();
                     return;
                 }
-
 
                 DrawRay(transform.position, hit.point);
 
@@ -74,8 +79,21 @@ public class PhysicsRaycaster : MonoBehaviour
                     {
                         Teleport(hit.point);
                     }
-
                 }
+
+                //if (uiPointer != null)
+                //{
+                //    if (hit.collider.gameObject.layer == uiMask && uiPointer.IsActive())
+                //    {
+                //        uiPointer.ActivatePointer();
+                //    }
+                //    else if(hit.collider.gameObject.layer != uiMask && uiPointer.IsActive())
+                //    {
+                //        uiPointer.DeActivatePointer();
+                //    }
+                //}
+
+                
             }
 
             else

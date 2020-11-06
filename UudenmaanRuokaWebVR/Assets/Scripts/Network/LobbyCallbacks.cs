@@ -16,23 +16,6 @@ public class LobbyCallbacks : MonoBehaviourPunCallbacks
     public delegate void LobbyDelegate();
     public static event LobbyDelegate onSuccessfullyJoinedLobby;
 
-    /// <summary>
-    /// Joins random room, if fails triggers the on join random room failed callback.
-    /// </summary>
-    public void JoinSomeRandomRoom()
-    {
-        
-        if (ConnectServerCallbacks.isConnecting)
-        {
-            Debug.Log("Joining Random Room");
-            PhotonNetwork.JoinRandomRoom();        
-        }
-        else
-        {         
-            ConnectServerCallbacks.isConnecting = PhotonNetwork.ConnectUsingSettings();
-        }
-    }
-
     public override void OnJoinedLobby()
     {
         PlayerInformation.Name = "Anonym " + Random.Range(0,10000);

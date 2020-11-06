@@ -36,11 +36,12 @@ public class RoomCallbacks : MonoBehaviourPunCallbacks
         Debug.Log(PhotonNetwork.NickName + " Joined in to the Room " + PhotonNetwork.CurrentRoom.Name);
         onSuccessfullyJoinedRoom?.Invoke();
 
-        if (PhotonNetwork.IsMasterClient)
+        /*if (PhotonNetwork.IsMasterClient)
         {
             Debug.Log(PhotonNetwork.IsMasterClient);
             LoadLevel();
-        }
+        }*/
+     
     }
 
     /// <summary>
@@ -71,24 +72,18 @@ public class RoomCallbacks : MonoBehaviourPunCallbacks
     public override void OnLeftRoom()
     {
         Debug.Log("Left the Room");
-        SceneManager.LoadScene(0);
         onSuccessfullyLeftRoom?.Invoke();
-    }
-
-    public void LeaveRoom()
-    {
-        PhotonNetwork.LeaveRoom();
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         Debug.Log("Player entered the Room " + newPlayer.NickName);
 
-        if(PhotonNetwork.IsMasterClient)
-        {
-            Debug.Log(PhotonNetwork.IsMasterClient);
-            LoadLevel();
-        }
+        //if(PhotonNetwork.IsMasterClient)
+        //{
+        //    Debug.Log(PhotonNetwork.IsMasterClient);
+        //    LoadLevel();
+        //}
 
     }
 
@@ -98,8 +93,7 @@ public class RoomCallbacks : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.IsMasterClient)
         {
-            Debug.Log(PhotonNetwork.IsMasterClient);
-            LoadLevel();
+            Debug.Log(PhotonNetwork.IsMasterClient);         
         }
     }
 
@@ -107,10 +101,10 @@ public class RoomCallbacks : MonoBehaviourPunCallbacks
     {
         if(!PhotonNetwork.IsMasterClient)
         {
-            Debug.LogError("Trying to load level but we are not masterclient!");
+            Debug.Log("Trying to load level but we are not masterclient!");      
         }
-        Debug.Log("Loading level " + PhotonNetwork.CurrentRoom.PlayerCount);
-        PhotonNetwork.LoadLevel(1);
-        
+
+        //Debug.Log("Loading level " + PhotonNetwork.CurrentRoom.PlayerCount);
+        PhotonNetwork.LoadLevel(4);
     }
 }

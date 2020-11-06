@@ -71,7 +71,7 @@ public class FeetIK : MonoBehaviour
         RaycastHit hit;
 
         bool hasHit = Physics.Raycast(rightFootPos + Vector3.up, Vector3.down, out hit);
-        if (hasHit)
+        if (hasHit && hit.collider.gameObject.layer != LayerMask.NameToLayer("Controller"))
         {
             anim.SetIKPositionWeight(AvatarIKGoal.RightFoot, rightFootPosWeight);
             anim.SetIKPosition(AvatarIKGoal.RightFoot, hit.point + footOffset);
@@ -89,7 +89,7 @@ public class FeetIK : MonoBehaviour
         Vector3 leftFootPos = anim.GetIKPosition(AvatarIKGoal.LeftFoot);
         hasHit = Physics.Raycast(leftFootPos + Vector3.up, Vector3.down, out hit);
 
-        if (hasHit)
+        if (hasHit && hit.collider.gameObject.layer != LayerMask.NameToLayer("Controller"))
         {
             anim.SetIKPositionWeight(AvatarIKGoal.LeftFoot, leftFootPosWeight);
             anim.SetIKPosition(AvatarIKGoal.LeftFoot, hit.point + footOffset);

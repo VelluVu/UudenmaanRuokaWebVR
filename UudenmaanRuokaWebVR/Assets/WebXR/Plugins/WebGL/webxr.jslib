@@ -25,7 +25,7 @@ mergeInto(LibraryManager.library, {
     // Listen for headset updates from webxr.js and load data into shared Array which we pick up in Unity.
     document.addEventListener('VRData', function(evt) {
       var data = evt.detail;
-
+			  
       Object.keys(data).forEach(function (key, i) {
         var dataLength = data[key].length;
         for (var x = 0; x < dataLength; x++) {

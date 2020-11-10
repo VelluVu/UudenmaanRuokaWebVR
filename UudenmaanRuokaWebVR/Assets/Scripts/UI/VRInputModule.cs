@@ -10,6 +10,7 @@ public class VRInputModule : BaseInputModule
     GameObject currentObject = null;
     PointerEventData data = null;
     public WebXR.WebXRController pointerController;
+    public static bool pointingUI = false;
 
     protected override void Awake()
     {
@@ -31,14 +32,17 @@ public class VRInputModule : BaseInputModule
 
         HandlePointerExitAndEnter(data, currentObject);
 
-        if(pointerController.GetButtonDown("Trigger"))
+        if (pointingUI)
         {
-            ProcessPress(data);
-        }
+            if (pointerController.GetButtonDown("Trigger"))
+            {
+                ProcessPress(data);
+            }
 
-        if(pointerController.GetButtonUp("Trigger"))
-        {
-            ProcessRelease(data);
+            if (pointerController.GetButtonUp("Trigger"))
+            {
+                ProcessRelease(data);
+            }
         }
     }
 

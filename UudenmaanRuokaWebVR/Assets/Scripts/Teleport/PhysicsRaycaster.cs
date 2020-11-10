@@ -60,12 +60,22 @@ public class PhysicsRaycaster : MonoBehaviour
 
                 DrawRay(transform.position, hit.point);
 
+                if(hit.collider.gameObject.layer == LayerMask.NameToLayer("UI"))
+                {
+                    VRInputModule.pointingUI = true;
+                }
+                else
+                {
+                    VRInputModule.pointingUI = false;
+                }
+                
+
                 //Distant picks up interactable if pointing interactable
                 if (hit.collider.gameObject.CompareTag("Interactable"))
                 {
                     if (controller.GetButtonDown("Trigger") || controller.GetButtonDown("Grip"))
                     {
-                        pickUpInteraction.DistantPickUp(hit.collider);
+                        pickUpInteraction.DistantPickUp(hit.point, hit.collider);
                     }
                 }
 

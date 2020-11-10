@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using WebXR;
+using System.Collections;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(FixedJoint))]
@@ -15,14 +16,20 @@ public class DesertControllerInteraction : MonoBehaviour
     private Vector3 lastPosition;
     private Quaternion lastRotation;
 
-    private Animator anim;
+    //private Animator anim;
     private PhysicsRaycaster teleport;
+    public int interpolationFramesCount = 45;
+    int elapsedFrames = 0;
+
+    public bool distantPickup = false;
+    public bool initPickUp = false;
+    float time = 1f;
 
     void Awake()
     {
         t = transform;
         attachJoint = GetComponent<FixedJoint>();
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
         controller = GetComponent<WebXRController>();
         teleport = GetComponent<PhysicsRaycaster>();
     }
@@ -30,20 +37,13 @@ public class DesertControllerInteraction : MonoBehaviour
     void Update()
     {
         if (teleport.active) return; // Changed this for teleporting
-
-
-        float normalizedTime = controller.GetButton("Trigger") ? 1 : controller.GetAxis("Grip");
-
+        if (distantPickup) return;
 
         if (controller.GetButtonDown("Trigger") || controller.GetButtonDown("Grip"))
             Pickup();
 
         if (controller.GetButtonUp("Trigger") || controller.GetButtonUp("Grip"))
             Drop();
-
-
-        // Use the controller button or axis position to manipulate the playback time for hand model.
-        anim.Play("Take", -1, normalizedTime);
 
     }
 
@@ -53,6 +53,7 @@ public class DesertControllerInteraction : MonoBehaviour
 
         lastPosition = currentRigidBody.position;
         lastRotation = currentRigidBody.rotation;
+
     }
 
     void OnTriggerEnter(Collider other)
@@ -98,27 +99,61 @@ public class DesertControllerInteraction : MonoBehaviour
     /// Picks up object from distance
     /// </summary>
     /// <param name="other">targeted object collider</param>
-    public void DistantPickUp(Collider other)
+    public void DistantPickUp(Vector3 hitpoint, Collider other)
     {
         teleport.active = false;
+        distantPickup = true;
 
-        currentRigidBody = other.attachedRigidbody;
+        if (!initPickUp)
+        {
+            initPickUp = true;
 
-        if (!currentRigidBody)
-            return;
+            currentRigidBody = other.attachedRigidbody;
 
-        currentRigidBody.transform.position = t.position;
-        attachJoint.connectedBody = currentRigidBody;
+            if (!currentRigidBody)
+                return;
+  
+            StartCoroutine(Magnetic(other.transform.position, other.attachedRigidbody));
+        }
 
-        lastPosition = currentRigidBody.position;
-        lastRotation = currentRigidBody.rotation;
+        if (currentRigidBody)
+        {
+            lastPosition = currentRigidBody.position;
+            lastRotation = currentRigidBody.rotation;
+        }
+    }
 
+    IEnumerator Magnetic(Vector3 startPos, Rigidbody other)
+    {
+        float elapsedTime = 0;
+        while ((elapsedTime < time) && distantPickup)
+        {
+            Debug.Log(" Magnetismmmmm");
+
+            other.position = Vector3.Lerp(startPos, transform.position, elapsedTime / time);
+            elapsedTime += Time.deltaTime;
+
+            //if(Vector3.Distance(other.transform.position, transform.position) < 0.01f)
+            //{
+            //    currentRigidBody.position = other.position;
+            //    attachJoint.connectedBody = currentRigidBody;
+            //}
+
+            yield return null;
+        }
+        attachJoint.connectedBody = other;
     }
 
     public void Drop()
     {
         if (!currentRigidBody)
             return;
+
+        if (distantPickup)
+            distantPickup = false;
+
+        if (initPickUp)
+            initPickUp = false;
 
         attachJoint.connectedBody = null;
 

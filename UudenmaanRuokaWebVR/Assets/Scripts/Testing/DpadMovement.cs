@@ -17,7 +17,12 @@ public class DpadMovement : MonoBehaviour
     public Transform head; // Dont forget to drag in the head!
 
     public float moveSpeed = 2f; // 2f ok move speed
-    public float turnSpeed = 50f; // 50f turns ok speed
+    public float stepTime = 0.25f;
+    public float turnDegrees = 45f; // 50f turns ok speed
+
+    public float turnRate = 0.1f;
+    public bool blockTurn = false;
+    public bool stepping = false;
 
     private void Start()
     {
@@ -29,27 +34,65 @@ public class DpadMovement : MonoBehaviour
 
     private void Update()
     {
-     
-        if (c.GetButton("DpadR"))
+        if (!blockTurn)
         {
-            //Debug.Log("DpadR detected " + c.GetButton("DpadR"));
-            TurnRight();
+            if (c.GetButton("DpadR"))
+            {
+                //Debug.Log("Pressing DpadR");
+                //Debug.Log("DpadR detected " + c.GetButton("DpadR"));
+                StartCoroutine(SmoothlyTurnToRotation(turnDegrees
+        ));
+            }
+            if (c.GetButton("DpadL"))
+            {
+                //Debug.Log("Pressing DpadL");
+                //Debug.Log("DpadL detected " + c.GetButton("DpadL"));
+                //TurnLeft();
+                StartCoroutine(SmoothlyTurnToRotation(-turnDegrees
+        ));
+            }
+
+            //StartCoroutine(TurnDelay());
         }
-        if (c.GetButton("DpadL"))
+        if (!stepping)
         {
-            //Debug.Log("DpadL detected " + c.GetButton("DpadL"));
-            TurnLeft();
+            if (c.GetButton("DpadU"))
+            {
+                //Debug.Log("DpadU detected " + c.GetButton("DpadU"));
+                //StartCoroutine(Stepping(Vector3.Scale(new Vector3(head.forward.x, 0, head.forward.z).normalized, Vector3.one * moveSpeed)));
+                StartCoroutine(Stepping(new Vector3(head.forward.x, 0, head.forward.z)));
+            }
+            if (c.GetButton("DpadD"))
+            {
+                //Debug.Log("DpadD detected " + c.GetButton("DpadD"));
+                //StartCoroutine(Stepping(Vector3.Scale(new Vector3(-head.forward.x, 0, -head.forward.z).normalized, Vector3.one * moveSpeed)));
+                StartCoroutine(Stepping(new Vector3(-head.forward.x, 0, -head.forward.z)));
+            }
         }
-        if (c.GetButton("DpadU"))
+    }
+    IEnumerator TurnDelay()
+    {
+        yield return new WaitForSeconds(turnRate);
+    }
+
+    /// <summary>Slerp Turns player by degrees</summary>
+    IEnumerator SmoothlyTurnToRotation(float turnAmound)
+    {
+        //Debug.Log("Started Turning " + turnAmound);
+        blockTurn = true;
+        float elapsedTime = 0;
+        Quaternion fromAngle = body.rotation;
+        Quaternion toAngle = body.rotation * Quaternion.AngleAxis(turnAmound, Vector3.up);
+        while (elapsedTime < turnRate)
         {
-            //Debug.Log("DpadU detected " + c.GetButton("DpadU"));
-            MoveForward();
+            Debug.Log("Turning in " + turnRate + " elapsedTime " + elapsedTime);
+            body.rotation = Quaternion.Slerp(fromAngle, toAngle, elapsedTime / turnRate);
+            elapsedTime += Time.deltaTime;
+
+            yield return null;
         }
-        if (c.GetButton("DpadD"))
-        {
-            //Debug.Log("DpadD detected " + c.GetButton("DpadD"));
-            MoveBackward();
-        }
+        Debug.Log("Enabling turning again");
+        blockTurn = false;
     }
 
     /// <summary>
@@ -57,7 +100,32 @@ public class DpadMovement : MonoBehaviour
     /// </summary>
     public void MoveForward()
     {
-        body.position += new Vector3(head.forward.x,0,head.forward.z) * moveSpeed * Time.deltaTime;
+        Vector3 fromPos = body.position;
+        Vector3 toPos = new Vector3(head.forward.x, 0, head.forward.z);
+        body.position = Vector3.Lerp(fromPos, toPos, Time.deltaTime * moveSpeed);
+    }
+
+    /// <summary>
+    /// Lerps player to head look direction with steps
+    /// </summary>
+    /// <param name="toPos"></param>
+    /// <returns></returns>
+    IEnumerator Stepping(Vector3 toPos)
+    {
+        stepping = true;
+        float t = 0;
+        Vector3 fromPos = body.position;
+        toPos = toPos.normalized;
+        toPos = Vector3.Scale(toPos, Vector3.one * moveSpeed);
+        toPos += fromPos;
+
+        while (t < stepTime)
+        {
+            body.position = Vector3.Lerp(fromPos, toPos, t / stepTime);
+            t += Time.deltaTime;
+            yield return null;
+        }
+        stepping = false;
     }
 
     /// <summary>
@@ -65,7 +133,9 @@ public class DpadMovement : MonoBehaviour
     /// </summary>
     public void MoveBackward()
     {
-        body.position -= new Vector3(head.forward.x, 0, head.forward.z) * moveSpeed * Time.deltaTime; //ei liiku y akselilla ei ole lentokonepeli!
+        Vector3 fromPos = body.position;
+        Vector3 toPos = new Vector3(-head.forward.x, 0, -head.forward.z).normalized;
+        body.position = Vector3.Lerp(fromPos, toPos, Time.deltaTime * moveSpeed);
     }
 
     /// <summary>
@@ -73,7 +143,8 @@ public class DpadMovement : MonoBehaviour
     /// </summary>
     public void TurnRight()
     {
-        body.rotation = body.rotation * Quaternion.Euler(0,1 * turnSpeed * Time.deltaTime, 0);
+        //body.rotation = body.rotation * Quaternion.Euler(0,1 * turnDegrees * Time.deltaTime, 0);
+        body.rotation = Quaternion.Lerp(body.rotation, Quaternion.AngleAxis(turnDegrees, Vector3.up), Time.deltaTime);
     }
 
     /// <summary>
@@ -81,7 +152,9 @@ public class DpadMovement : MonoBehaviour
     /// </summary>
     public void TurnLeft()
     {
-        body.rotation = body.rotation * Quaternion.Euler(0, -1 * turnSpeed * Time.deltaTime, 0);
+
+        //body.rotation = body.rotation * Quaternion.Euler(0, -1 * turnDegrees * Time.deltaTime, 0);
+        body.rotation = Quaternion.Lerp(body.rotation, Quaternion.AngleAxis(-turnDegrees, Vector3.up), Time.deltaTime);
     }
 
 }

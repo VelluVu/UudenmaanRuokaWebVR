@@ -36,14 +36,12 @@ public class VRRig : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        headBodyOffset = transform.position - headConstraint.position;
-     
+        headBodyOffset = transform.position - headConstraint.position;    
     }
-
+   
     // Update is called once per frame
     void FixedUpdate()
-    {
-
+    {        
         transform.position = headConstraint.position + headBodyOffset;
         transform.forward = new Vector3(headConstraint.forward.x, transform.forward.y, headConstraint.forward.z);
         

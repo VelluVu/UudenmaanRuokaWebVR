@@ -438,6 +438,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interpolationFramesCount: 45
+  distantPickup: 0
+  initPickUp: 0
 --- !u!114 &2138090726064940613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -577,8 +579,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   head: {fileID: 4880933331852718465}
-  moveSpeed: 2
-  turnSpeed: 50
+  moveSpeed: 0.3
+  stepTime: 0.3
+  turnDegrees: 45
+  turnRate: 0.1
+  blockTurn: 0
+  stepping: 0
 --- !u!1 &4809305912363447868
 GameObject:
   m_ObjectHideFlags: 0
@@ -847,6 +853,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interpolationFramesCount: 45
+  distantPickup: 0
+  initPickUp: 0
 --- !u!114 &2138090726064940614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -986,8 +994,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   head: {fileID: 4880933331852718465}
-  moveSpeed: 2
-  turnSpeed: 50
+  moveSpeed: 0.3
+  stepTime: 0.3
+  turnDegrees: 45
+  turnRate: 0.1
+  blockTurn: 0
+  stepping: 0
 --- !u!1001 &2138090724224793463
 PrefabInstance:
   m_ObjectHideFlags: 0

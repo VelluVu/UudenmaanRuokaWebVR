@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using WebXR;
 
 /// <summary>
 /// Class for altering the offset values for tracking points of rig and moves the body with head.

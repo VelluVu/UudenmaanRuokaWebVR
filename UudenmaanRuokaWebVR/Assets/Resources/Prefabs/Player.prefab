@@ -152,7 +152,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4452110679163787075}
-  - component: {fileID: 9187899959574153842}
+  - component: {fileID: 7173413653588839994}
   - component: {fileID: 344289138}
   m_Layer: 0
   m_Name: Player
@@ -180,7 +180,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9187899959574153842
+--- !u!114 &7173413653588839994
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -189,14 +189,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2215103644070839746}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f6f1e1eb73944c8f8f68fd04c2c73a8, type: 3}
+  m_Script: {fileID: 11500000, guid: 519f6ee6510174b44bbe9a8a2d3b6a6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toggleXRKeyName: return
-  dontDestroyOnLoad: 1
-  DefaultHeight: 1.2
-  TrackingSpace: 0
-  xrState: 1
 --- !u!114 &344289138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,8 +309,7 @@ GameObject:
   - component: {fileID: 1697629958261579393}
   - component: {fileID: 5682587206685185946}
   - component: {fileID: 2147342037344070426}
-  - component: {fileID: 1840015880735593117}
-  - component: {fileID: 2138090726064940611}
+  - component: {fileID: 1287446367669635577}
   - component: {fileID: 2138090726064940613}
   - component: {fileID: 2138090726064940627}
   - component: {fileID: 1350117316}
@@ -386,7 +380,7 @@ Animator:
   m_GameObject: {fileID: 4790035309847721700}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: c99aacc3accab4fdaadab5e3ea13b9c7, type: 3}
-  m_Controller: {fileID: 9100000, guid: 7a78fb7b47e7d9743ae217df5ba993db, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -408,7 +402,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.15
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1840015880735593117
+--- !u!114 &1287446367669635577
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -417,27 +411,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4790035309847721700}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b3bb97952bf54d4b8a4885bdd93b6a4, type: 3}
+  m_Script: {fileID: 11500000, guid: 74bfe9c8d313cf9458117129f19cd7af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hand: 2
-  inputMap: {fileID: 11400000, guid: 409615e2e46484590bdce5671a77c08b, type: 2}
+  hand: 0
   simulate3dof: 0
   eyesToElbow: {x: 0.1, y: -0.4, z: 0.15}
   elbowHand: {x: 0, y: 0, z: 0.25}
---- !u!114 &2138090726064940611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4790035309847721700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84ce7ab38d3cb40bfb531a81b9acac7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interpolationFramesCount: 45
+  handJointPrefab: {fileID: 0}
+  showGOs: []
 --- !u!114 &2138090726064940613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -577,8 +559,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   head: {fileID: 4880933331852718465}
-  moveSpeed: 2
-  turnSpeed: 50
+  moveSpeed: 0.3
+  stepTime: 0.3
+  turnDegrees: 45
+  turnRate: 0.1
+  blockTurn: 0
+  stepping: 0
 --- !u!1 &4809305912363447868
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,7 +657,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5837073481333929204}
-  - component: {fileID: 6571972926772963986}
+  - component: {fileID: 5501216973836037235}
   m_Layer: 10
   m_Name: Cameras
   m_TagString: Player
@@ -696,7 +682,7 @@ Transform:
   m_Father: {fileID: 4452110679163787075}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6571972926772963986
+--- !u!114 &5501216973836037235
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -705,12 +691,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6316095676075519206}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f27b6e1b99a564b8bbe3383801aefa45, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f6b70cf8d6f4f94f931699457ea09a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cameraMain: {fileID: 8620459284352966081}
   cameraL: {fileID: 3910049064698012170}
-  cameraR: {fileID: 2274317951803236029}
+  cameraR: {fileID: 0}
+  cameraARL: {fileID: 0}
+  cameraARR: {fileID: 0}
 --- !u!1 &6734755557359682681
 GameObject:
   m_ObjectHideFlags: 0
@@ -724,8 +712,7 @@ GameObject:
   - component: {fileID: 5302389102567661201}
   - component: {fileID: 5362870082185389525}
   - component: {fileID: 8520250565560343807}
-  - component: {fileID: 7649296307075782314}
-  - component: {fileID: 2138090726064940612}
+  - component: {fileID: 4373153615539760123}
   - component: {fileID: 2138090726064940614}
   - component: {fileID: 2138090726064940628}
   - component: {fileID: 2401210}
@@ -795,7 +782,7 @@ Animator:
   m_GameObject: {fileID: 6734755557359682681}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 013217fcf4bba4f3380d9159876fa8ea, type: 3}
-  m_Controller: {fileID: 9100000, guid: b2216e835b0bdf54ea15eddd311bf60f, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -817,7 +804,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.15
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7649296307075782314
+--- !u!114 &4373153615539760123
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -826,27 +813,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6734755557359682681}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b3bb97952bf54d4b8a4885bdd93b6a4, type: 3}
+  m_Script: {fileID: 11500000, guid: 74bfe9c8d313cf9458117129f19cd7af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hand: 1
-  inputMap: {fileID: 11400000, guid: 919e635a2f8594e238e67589592a9237, type: 2}
+  hand: 0
   simulate3dof: 0
   eyesToElbow: {x: 0.1, y: -0.4, z: 0.15}
   elbowHand: {x: 0, y: 0, z: 0.25}
---- !u!114 &2138090726064940612
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6734755557359682681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84ce7ab38d3cb40bfb531a81b9acac7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interpolationFramesCount: 45
+  handJointPrefab: {fileID: 0}
+  showGOs: []
 --- !u!114 &2138090726064940614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -986,8 +961,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   head: {fileID: 4880933331852718465}
-  moveSpeed: 2
-  turnSpeed: 50
+  moveSpeed: 0.3
+  stepTime: 0.3
+  turnDegrees: 45
+  turnRate: 0.1
+  blockTurn: 0
+  stepping: 0
 --- !u!1001 &2138090724224793463
 PrefabInstance:
   m_ObjectHideFlags: 0

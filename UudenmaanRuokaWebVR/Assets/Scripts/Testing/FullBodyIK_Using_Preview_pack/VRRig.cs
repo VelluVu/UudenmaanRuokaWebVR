@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using WebXR;
 
 /// <summary>
 /// Class for altering the offset values for tracking points of rig and moves the body with head.
@@ -36,14 +35,12 @@ public class VRRig : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        headBodyOffset = transform.position - headConstraint.position;
-     
+        headBodyOffset = transform.position - headConstraint.position;    
     }
-
+   
     // Update is called once per frame
     void FixedUpdate()
-    {
-
+    {        
         transform.position = headConstraint.position + headBodyOffset;
         transform.forward = new Vector3(headConstraint.forward.x, transform.forward.y, headConstraint.forward.z);
         

@@ -1,5 +1,23 @@
 {
   "dependencies": {
+    "com.de-panther.webxr": {
+      "version": "https://github.com/De-Panther/unity-webxr-export.git?path=/Packages/webxr",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.xr.management": "3.2.13"
+      },
+      "hash": "9d1e8c8b769ac14831c7ec3c9101cd893fc3ff76"
+    },
+    "com.de-panther.webxr-interactions": {
+      "version": "https://github.com/De-Panther/unity-webxr-export.git?path=/Packages/webxr-interactions",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.de-panther.webxr": "0.4.0-preview"
+      },
+      "hash": "9d1e8c8b769ac14831c7ec3c9101cd893fc3ff76"
+    },
     "com.unity.animation.rigging": {
       "version": "0.2.7-preview",
       "depth": 0,
@@ -126,18 +144,14 @@
       },
       "url": "https://packages.unity.com"
     },
-    "com.unity.xr.oculus.standalone": {
-      "version": "2.38.4",
+    "com.unity.xr.oculus": {
+      "version": "1.4.3",
       "depth": 0,
       "source": "registry",
-      "dependencies": {},
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.xr.openvr.standalone": {
-      "version": "2.0.5",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {},
+      "dependencies": {
+        "com.unity.xr.management": "3.0.6",
+        "com.unity.ugui": "1.0.0"
+      },
       "url": "https://packages.unity.com"
     },
     "com.unity.modules.ai": {

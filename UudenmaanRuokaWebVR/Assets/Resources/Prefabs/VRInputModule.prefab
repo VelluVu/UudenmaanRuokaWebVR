@@ -61,7 +61,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
-  pointerController: {fileID: 0}
 --- !u!114 &405048334
 MonoBehaviour:
   m_ObjectHideFlags: 0

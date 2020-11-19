@@ -29,7 +29,8 @@ public class LobbyUI : MonoBehaviour
 
     public void PressJoinRandomRoom()
     {
-        onJoinRandomRoom?.Invoke();
+        joinRandomRoom_Button.interactable = false;
+        onJoinRandomRoom?.Invoke();   
     }
 
     public void MakeInteractable()

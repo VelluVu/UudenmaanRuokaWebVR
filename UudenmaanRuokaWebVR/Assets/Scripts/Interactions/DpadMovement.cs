@@ -15,8 +15,9 @@ public class DpadMovement : MonoBehaviour
     Transform body;
     [Tooltip("Drag the moving head camera here.")]
     public Transform head; // Dont forget to drag in the head!
+    public Transform webGLhead;
 
-    public float moveSpeed = 0.3f; // 2f ok move speed
+    public float moveSpeed = 1f; // 2f ok move speed
     public float stepTime = 0.3f;
     public float turnDegrees = 45f; // 50f turns ok speed
 
@@ -34,7 +35,9 @@ public class DpadMovement : MonoBehaviour
 
     private void Update()
     {
+#if UNITY_EDITOR
         c.TryUpdateButtons();
+#endif
 
         if (c.GetAxis2D(WebXRController.Axis2DTypes.Thumbstick).x > 0.75)
         {
@@ -51,19 +54,43 @@ public class DpadMovement : MonoBehaviour
 
         //StartCoroutine(TurnDelay());
 
+#if !UNITY_EDITOR && UNITY_WEBGL
+         if (c.GetAxis2D(WebXRController.Axis2DTypes.Thumbstick).y < -0.75)
+        {
+            Move(new Vector3(head.forward.x, 0, head.forward.z).normalized);
+            //Debug.Log("DpadU detected " + c.GetButton("DpadU"));
+            /*
+            if (!stepping)
+                StartCoroutine(Stepping(new Vector3(webGLhead.forward.x, 0, webGLhead.forward.z)));
+                */
+        }
+        if (c.GetAxis2D(WebXRController.Axis2DTypes.Thumbstick).y > 0.75)
+        {
+            Move(new Vector3(-head.forward.x, 0, -head.forward.z).normalized);
+            //Debug.Log("DpadD detected " + c.GetButton("DpadD"));        
+            /*
+            if (!stepping)
+                StartCoroutine(Stepping(new Vector3(-webGLhead.forward.x, 0, -webGLhead.forward.z)));
+                */
+        }
 
+#endif
+#if UNITY_EDITOR
         if (c.GetAxis2D(WebXRController.Axis2DTypes.Thumbstick).y > 0.75)
         {
             //Debug.Log("DpadU detected " + c.GetButton("DpadU"));
-            if (!stepping)
-                StartCoroutine(Stepping(new Vector3(head.forward.x, 0, head.forward.z)));
+            /*if (!stepping)
+                StartCoroutine(Stepping(new Vector3(head.forward.x, 0, head.forward.z)));*/
+            Move(new Vector3(head.forward.x, 0, head.forward.z).normalized);
         }
         if (c.GetAxis2D(WebXRController.Axis2DTypes.Thumbstick).y < -0.75)
         {
             //Debug.Log("DpadD detected " + c.GetButton("DpadD"));
-            if (!stepping)
-                StartCoroutine(Stepping(new Vector3(-head.forward.x, 0, -head.forward.z)));
+            /*if (!stepping)
+                StartCoroutine(Stepping(new Vector3(-head.forward.x, 0, -head.forward.z)));*/
+            Move(new Vector3(-head.forward.x, 0, -head.forward.z).normalized);
         }
+#endif
 
 
     }
@@ -82,24 +109,22 @@ public class DpadMovement : MonoBehaviour
         Quaternion toAngle = body.rotation * Quaternion.AngleAxis(turnAmound, Vector3.up);
         while (elapsedTime < turnRate)
         {
-            Debug.Log("Turning in " + turnRate + " elapsedTime " + elapsedTime);
+            //Debug.Log("Turning in " + turnRate + " elapsedTime " + elapsedTime);
             body.rotation = Quaternion.Slerp(fromAngle, toAngle, elapsedTime / turnRate);
             elapsedTime += Time.deltaTime;
 
             yield return null;
         }
-        Debug.Log("Enabling turning again");
+        //Debug.Log("Enabling turning again");
         blockTurn = false;
     }
 
     /// <summary>
     /// Moves to look direction, incrementing body position by vector with flattened Y axis
     /// </summary>
-    public void MoveForward()
+    public void Move(Vector3 toPos)
     {
-        Vector3 fromPos = body.position;
-        Vector3 toPos = new Vector3(head.forward.x, 0, head.forward.z);
-        body.position = Vector3.Lerp(fromPos, toPos, Time.deltaTime * moveSpeed);
+        body.position += toPos * moveSpeed * Time.deltaTime;
     }
 
     /// <summary>
@@ -123,16 +148,6 @@ public class DpadMovement : MonoBehaviour
             yield return null;
         }
         stepping = false;
-    }
-
-    /// <summary>
-    /// Moves backwards, reducing body position by vector with flattened Y axis
-    /// </summary>
-    public void MoveBackward()
-    {
-        Vector3 fromPos = body.position;
-        Vector3 toPos = new Vector3(-head.forward.x, 0, -head.forward.z).normalized;
-        body.position = Vector3.Lerp(fromPos, toPos, Time.deltaTime * moveSpeed);
     }
 
     /// <summary>

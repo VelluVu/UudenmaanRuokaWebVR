@@ -40,9 +40,10 @@ public class PickUpInteraction : MonoBehaviour
     {
         if (teleport.active) return;
         if (distantPickup) return;
+        if (VRInputModule.pointingUI) return;
 
         controller.TryUpdateButtons();
-        
+
         if (controller.GetButtonDown(WebXRController.ButtonTypes.Trigger)
             || controller.GetButtonDown(WebXRController.ButtonTypes.Grip)
             || controller.GetButtonDown(WebXRController.ButtonTypes.ButtonA))
@@ -59,7 +60,7 @@ public class PickUpInteraction : MonoBehaviour
 
     }
 
-    private void FixedUpdate() 
+    private void FixedUpdate()
     {
         if (!currentRigidBody) return;
 
@@ -84,11 +85,11 @@ public class PickUpInteraction : MonoBehaviour
             return;
 
         contactRigidBodies.Remove(other.gameObject.GetComponent<Rigidbody>());
-        
+
         teleport.active = true;
     }
 
-     public bool HoldingObj()
+    public bool HoldingObj()
     {
         return currentRigidBody;
     }
@@ -124,7 +125,8 @@ public class PickUpInteraction : MonoBehaviour
 
             if (!currentRigidBody)
                 return;
-  
+
+           
             StartCoroutine(Magnetic(other.transform.position, other.attachedRigidbody));
         }
 
@@ -135,13 +137,13 @@ public class PickUpInteraction : MonoBehaviour
         }
     }
 
-     IEnumerator Magnetic(Vector3 startPos, Rigidbody other)
+    IEnumerator Magnetic(Vector3 startPos, Rigidbody other)
     {
         float elapsedTime = 0;
         while ((elapsedTime < time) && distantPickup)
         {
-            Debug.Log(" Magnetismmmmm");
-
+            //Debug.Log(" Magnetismmmmm : " + elapsedTime);
+            controller.Pulse(0.25f, 150);
             other.position = Vector3.Lerp(startPos, transform.position, elapsedTime / time);
             elapsedTime += Time.deltaTime;
 
@@ -153,53 +155,51 @@ public class PickUpInteraction : MonoBehaviour
 
             yield return null;
         }
-        attachJoint.connectedBody = other;
+        attachJoint.connectedBody = currentRigidBody;
     }
 
     public void Drop()
     {
-        if (!currentRigidBody)
-            return;
 
-        if (distantPickup)
-            distantPickup = false;
-
-        if (initPickUp)
-            initPickUp = false;
-
+        distantPickup = false;
+        initPickUp = false;
         attachJoint.connectedBody = null;
 
-        currentRigidBody.velocity = (currentRigidBody.position - lastPosition) / Time.deltaTime;
+        if (currentRigidBody)
+        {
 
-        var deltaRotation = currentRigidBody.rotation * Quaternion.Inverse(lastRotation);
-        float angle;
-        Vector3 axis;
-        deltaRotation.ToAngleAxis(out angle, out axis);
-        angle *= Mathf.Deg2Rad;
-        currentRigidBody.angularVelocity = axis * angle / Time.deltaTime;
+            currentRigidBody.velocity = (currentRigidBody.position - lastPosition) / Time.deltaTime;
 
-        currentRigidBody = null;
+            var deltaRotation = currentRigidBody.rotation * Quaternion.Inverse(lastRotation);
+            float angle;
+            Vector3 axis;
+            deltaRotation.ToAngleAxis(out angle, out axis);
+            angle *= Mathf.Deg2Rad;
+            currentRigidBody.angularVelocity = axis * angle / Time.deltaTime;
+
+            currentRigidBody = null;
+        }
 
         teleport.active = true;
     }
 
     private Rigidbody GetNearestRigidBody()
     {
-      Rigidbody nearestRigidBody = null;
-      float minDistance = float.MaxValue;
-      float distance = 0.0f;
+        Rigidbody nearestRigidBody = null;
+        float minDistance = float.MaxValue;
+        float distance = 0.0f;
 
-      foreach (Rigidbody contactBody in contactRigidBodies)
-      {
-        distance = (contactBody.gameObject.transform.position - transform.position).sqrMagnitude;
-
-        if (distance < minDistance)
+        foreach (Rigidbody contactBody in contactRigidBodies)
         {
-          minDistance = distance;
-          nearestRigidBody = contactBody;
-        }
-      }
+            distance = (contactBody.gameObject.transform.position - transform.position).sqrMagnitude;
 
-      return nearestRigidBody;
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                nearestRigidBody = contactBody;
+            }
+        }
+
+        return nearestRigidBody;
     }
-  }
+}

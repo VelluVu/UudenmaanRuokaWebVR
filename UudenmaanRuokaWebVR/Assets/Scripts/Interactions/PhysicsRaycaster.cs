@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using WebXR;
 
 /// <summary>
@@ -26,7 +27,10 @@ public class PhysicsRaycaster : MonoBehaviour
     private LayerMask uiMask;
 
     public float maxDistance = 10f;
-    
+
+    public delegate void PointerDataDelegate();
+    public static event PointerDataDelegate onPointerDown;
+    public static event PointerDataDelegate onPointerUp;
 
     /// <summary>
     /// Gets the necessary components and hides the linerenderer.
@@ -67,20 +71,23 @@ public class PhysicsRaycaster : MonoBehaviour
 
                 if(hit.collider.gameObject.layer == LayerMask.NameToLayer("UI"))
                 {
-                    VRInputModule.pointingUI = true;
+                    if (controller.GetButtonDown(WebXRController.ButtonTypes.Trigger) && controller.hand == WebXRControllerHand.RIGHT)      
+                        onPointerDown?.Invoke();
+                    if (controller.GetButtonUp(WebXRController.ButtonTypes.Trigger) && controller.hand == WebXRControllerHand.RIGHT)
+                        onPointerUp?.Invoke();
                 }
-                else
-                {
-                    VRInputModule.pointingUI = false;
-                }
-                
-
+               
                 //Distant picks up interactable if pointing interactable
                 if (hit.collider.gameObject.CompareTag("Interactable"))
                 {
-                    if (controller.GetButtonDown(WebXRController.ButtonTypes.Trigger) || controller.GetButtonDown(WebXRController.ButtonTypes.Grip))
+                    if (controller.GetButtonDown(WebXRController.ButtonTypes.Trigger))
                     {
                         interaction.DistantPickUp(hit.point, hit.collider);
+                    }
+                    if (controller.GetButtonUp(WebXRController.ButtonTypes.Trigger))
+                    {
+                        //Debug.Log("DROPPING OBJECT");
+                        interaction.Drop();
                     }
                 }
 
@@ -95,22 +102,7 @@ public class PhysicsRaycaster : MonoBehaviour
                         Teleport(hit.point);
                     }
                 }
-
-                //if (uiPointer != null)
-                //{
-                //    if (hit.collider.gameObject.layer == uiMask && uiPointer.IsActive())
-                //    {
-                //        uiPointer.ActivatePointer();
-                //    }
-                //    else if(hit.collider.gameObject.layer != uiMask && uiPointer.IsActive())
-                //    {
-                //        uiPointer.DeActivatePointer();
-                //    }
-                //}
-
-                
             }
-
             else
             {
                 HideRay();
@@ -120,13 +112,13 @@ public class PhysicsRaycaster : MonoBehaviour
         {
             HideRay();
         }
-        
-        //Drops if holding interactable and releasing trigger/grip
-        if ((controller.GetButtonUp(WebXRController.ButtonTypes.Trigger) || controller.GetButtonUp(WebXRController.ButtonTypes.Grip)) && interaction.HoldingObj())
+
+
+        if (controller.GetButtonUp(WebXRController.ButtonTypes.Trigger) && interaction.HoldingObj())
         {
             interaction.Drop();
+            //Debug.Log("DROPPING OBJECT");
         }
-        
     }
 
     /// <summary>

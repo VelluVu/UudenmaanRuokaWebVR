@@ -214,6 +214,11 @@ PrefabInstance:
       objectReference: {fileID: 1419163823}
     - target: {fileID: 8866000782809804322, guid: cab26fe456f386c4aa62f63d65e8864a,
         type: 3}
+      propertyPath: head.webGLVRTarget
+      value: 
+      objectReference: {fileID: 9177446075200362859}
+    - target: {fileID: 8866000782809804322, guid: cab26fe456f386c4aa62f63d65e8864a,
+        type: 3}
       propertyPath: leftHand.vrTarget
       value: 
       objectReference: {fileID: 1419163833}
@@ -224,6 +229,12 @@ PrefabInstance:
       objectReference: {fileID: 1419163832}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cab26fe456f386c4aa62f63d65e8864a, type: 3}
+--- !u!4 &1994948641 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5856238459533505062, guid: cab26fe456f386c4aa62f63d65e8864a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1994948640}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5260287688842995662
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -291,11 +302,6 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 9177446075200362857}
-    - target: {fileID: 1566446187120026010, guid: f544c2fe2a31ec542840af6bb8404dd6,
-        type: 3}
-      propertyPath: pointerController
-      value: 
-      objectReference: {fileID: 9177446075200362858}
     - target: {fileID: 8097008804415885683, guid: f544c2fe2a31ec542840af6bb8404dd6,
         type: 3}
       propertyPath: m_Name
@@ -310,6 +316,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1880466017, guid: d5147450fb23f474c8658d47b40ad534, type: 3}
+      propertyPath: body
+      value: 
+      objectReference: {fileID: 1994948641}
     - target: {fileID: 9172973916514512126, guid: d5147450fb23f474c8658d47b40ad534,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -378,15 +388,9 @@ Camera:
     type: 3}
   m_PrefabInstance: {fileID: 9177446075200362856}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &9177446075200362858 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9136156175841815368, guid: d5147450fb23f474c8658d47b40ad534,
+--- !u!4 &9177446075200362859 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9174866338494427868, guid: d5147450fb23f474c8658d47b40ad534,
     type: 3}
   m_PrefabInstance: {fileID: 9177446075200362856}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74bfe9c8d313cf9458117129f19cd7af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

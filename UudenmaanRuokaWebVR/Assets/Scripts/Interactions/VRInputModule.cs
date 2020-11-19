@@ -10,14 +10,34 @@ public class VRInputModule : BaseInputModule
 
     GameObject currentObject = null;
     PointerEventData data = null;
-    public WebXRController pointerController;
     public static bool pointingUI = false;
+
+    bool pointerPress = false;
+    bool pointerRelease = false;
 
     protected override void Awake()
     {
         base.Awake();
-        
+
         data = new PointerEventData(eventSystem);
+        PhysicsRaycaster.onPointerUp += PointerUp;
+        PhysicsRaycaster.onPointerDown += PointerDown;
+    }
+
+    protected override void OnDisable()
+    {
+        PhysicsRaycaster.onPointerUp -= PointerUp;
+        PhysicsRaycaster.onPointerDown -= PointerDown;
+    }
+
+    public void PointerDown()
+    {
+        pointerPress = true;
+    }
+
+    public void PointerUp()
+    {
+        pointerRelease = true;
     }
 
     public override void Process()
@@ -31,24 +51,20 @@ public class VRInputModule : BaseInputModule
 
         m_RaycastResultCache.Clear();
 
-        HandlePointerExitAndEnter(data, currentObject);
-        
+        if (!eventSystem.currentSelectedGameObject)
+            HandlePointerExitAndEnter(data, data.pointerCurrentRaycast.gameObject);
 
-        if (pointingUI)
+        if (pointerPress)
         {
-            pointerController.TryUpdateButtons();
-
-            if (pointerController.GetButtonDown(WebXRController.ButtonTypes.Trigger))
-            {
-                ProcessPress(data);
-            }
-
-            if (pointerController.GetButtonUp(WebXRController.ButtonTypes.Trigger))
-            {
-                ProcessRelease(data);
-            }
+            ProcessPress(data);
+            pointerPress = false;
         }
-        
+
+        if (pointerRelease)
+        {
+            ProcessRelease(data);
+            pointerRelease = false;
+        }
     }
 
     public PointerEventData GetData()
@@ -58,6 +74,7 @@ public class VRInputModule : BaseInputModule
 
     private void ProcessPress(PointerEventData data)
     {
+        Debug.Log("Process Press");
         data.pointerPressRaycast = data.pointerCurrentRaycast;
 
         GameObject newPointerPress = ExecuteEvents.ExecuteHierarchy(currentObject, data, ExecuteEvents.pointerDownHandler);
@@ -72,11 +89,12 @@ public class VRInputModule : BaseInputModule
 
     private void ProcessRelease(PointerEventData data)
     {
+        Debug.Log("Process Release");
         ExecuteEvents.Execute(data.pointerPress, data, ExecuteEvents.pointerUpHandler);
 
         GameObject pointerUpHandler = ExecuteEvents.GetEventHandler<IPointerClickHandler>(currentObject);
 
-        if(data.pointerPress == pointerUpHandler)
+        if (data.pointerPress == pointerUpHandler)
         {
             ExecuteEvents.Execute(data.pointerPress, data, ExecuteEvents.pointerClickHandler);
         }

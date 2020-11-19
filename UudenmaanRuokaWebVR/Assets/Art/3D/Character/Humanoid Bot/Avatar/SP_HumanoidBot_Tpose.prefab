@@ -360,7 +360,7 @@ GameObject:
   - component: {fileID: 2134726911}
   - component: {fileID: 2134726912}
   - component: {fileID: 2134726913}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HeadConstraint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -842,16 +842,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   head:
     vrTarget: {fileID: 0}
+    webGLVRTarget: {fileID: 0}
     rigTarget: {fileID: 2134726911}
     trackingPositionOffset: {x: 0, y: -0.09, z: -0.05}
     trackingRotationOffset: {x: 0, y: 0, z: 0}
   leftHand:
     vrTarget: {fileID: 0}
+    webGLVRTarget: {fileID: 0}
     rigTarget: {fileID: 929293386}
     trackingPositionOffset: {x: 0, y: 0, z: 0}
     trackingRotationOffset: {x: 175, y: -85, z: -111}
   rightHand:
     vrTarget: {fileID: 0}
+    webGLVRTarget: {fileID: 0}
     rigTarget: {fileID: 1371752982}
     trackingPositionOffset: {x: 0, y: 0, z: 0}
     trackingRotationOffset: {x: 175, y: 85, z: 111.1}
@@ -1051,7 +1054,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8437354825892443033}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spine1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -9,6 +9,7 @@ using UnityEngine;
 public class VRMap
 {
     public Transform vrTarget;
+    public Transform webGLVRTarget;
     public Transform rigTarget;
     public Vector3 trackingPositionOffset;
     public Vector3 trackingRotationOffset;
@@ -35,6 +36,12 @@ public class VRRig : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+
+#if !UNITY_EDITOR && UNITY_WEBGL
+        head.vrTarget = head.webGLVRTarget;
+
+#endif
+
         headBodyOffset = transform.position - headConstraint.position;    
     }
    
@@ -43,7 +50,9 @@ public class VRRig : MonoBehaviour
     {        
         transform.position = headConstraint.position + headBodyOffset;
         transform.forward = new Vector3(headConstraint.forward.x, transform.forward.y, headConstraint.forward.z);
-        
+
+        //Debug.Log("transform pos : " + transform.position + " VR Camera local pos : " + head.vrTarget.localPosition + " VR Camera pos : " + head.vrTarget.position + " Head constraint position : " + headConstraint.position + " Head pos : " + head.vrTarget.position );
+
         head.Map();
         leftHand.Map();
         rightHand.Map();

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16df9bfdec2e91a42b6ce6979634ba95, type: 3}
+  m_Name: "Leiv\xE4t"
+  m_EditorClassIdentifier: 
+  pPicture: {fileID: 2800000, guid: 5bf85e4b1d477c1449cdb18404a2d037, type: 3}
+  pName: "Leiv\xE4t"
+  pDescription: "Kirkkonummen Maatilapuodin Leiv\xE4t"
+  pPrice: 4

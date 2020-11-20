@@ -4,6 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// @Author : Veli-Matti Vuoti
+/// 
+/// Handles the lobby room buttons or button. TODO : Room list and manual joining-/create room.
+/// </summary>
 public class LobbyUI : MonoBehaviour
 {
     

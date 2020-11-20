@@ -18,12 +18,12 @@ TagManager:
   - Controller
   - HMD
   - Obstacle
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Handler
+  - Grabbable
+  - Door
+  - IK_Body
+  - Product
+  - Floor
   - 
   - 
   - 

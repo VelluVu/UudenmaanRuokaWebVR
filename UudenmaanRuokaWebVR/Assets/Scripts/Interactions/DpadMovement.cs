@@ -110,7 +110,7 @@ public class DpadMovement : MonoBehaviour
         while (elapsedTime < turnRate)
         {
             //Debug.Log("Turning in " + turnRate + " elapsedTime " + elapsedTime);
-            body.rotation = Quaternion.Slerp(fromAngle, toAngle, elapsedTime / turnRate);
+            body.rotation = Quaternion.Lerp(fromAngle, toAngle, elapsedTime / turnRate);
             elapsedTime += Time.deltaTime;
 
             yield return null;

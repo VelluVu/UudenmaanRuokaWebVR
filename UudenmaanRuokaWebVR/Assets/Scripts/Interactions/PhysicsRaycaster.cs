@@ -7,7 +7,7 @@ using WebXR;
 /// <summary>
 /// @Author : Veli-Matti Vuoti
 /// 
-/// This class shoots the physics raycast into chosen layers and does the layer matching operation
+/// This class shoots the physics raycast for detection of objects and surfaces.
 /// 
 /// </summary>
 public class PhysicsRaycaster : MonoBehaviour
@@ -31,6 +31,8 @@ public class PhysicsRaycaster : MonoBehaviour
     public delegate void PointerDataDelegate();
     public static event PointerDataDelegate onPointerDown;
     public static event PointerDataDelegate onPointerUp;
+
+    public ProductBox currentHoverBox;
 
     /// <summary>
     /// Gets the necessary components and hides the linerenderer.
@@ -64,13 +66,22 @@ public class PhysicsRaycaster : MonoBehaviour
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
                 {
                     HideRay();
+                    HideUIBox();
                     return;
                 }
 
                 DrawRay(transform.position, hit.point);
 
+                if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Product"))
+                {
+                    HideUIBox();
+                    currentHoverBox = hit.collider.gameObject.GetComponent<ProductBox>();
+                    currentHoverBox.ShowUIElement();
+                }
+        
                 if(hit.collider.gameObject.layer == LayerMask.NameToLayer("UI"))
                 {
+                    HideUIBox();
                     if (controller.GetButtonDown(WebXRController.ButtonTypes.Trigger) && controller.hand == WebXRControllerHand.RIGHT)      
                         onPointerDown?.Invoke();
                     if (controller.GetButtonUp(WebXRController.ButtonTypes.Trigger) && controller.hand == WebXRControllerHand.RIGHT)
@@ -80,6 +91,7 @@ public class PhysicsRaycaster : MonoBehaviour
                 //Distant picks up interactable if pointing interactable
                 if (hit.collider.gameObject.CompareTag("Interactable"))
                 {
+                    HideUIBox();
                     if (controller.GetButtonDown(WebXRController.ButtonTypes.Trigger))
                     {
                         interaction.DistantPickUp(hit.point, hit.collider);
@@ -93,6 +105,7 @@ public class PhysicsRaycaster : MonoBehaviour
 
                 if (hit.collider.gameObject.layer == teleMask) // Mozilla WebXR exporter for some reason reguires both down and up checks.
                 {
+                    HideUIBox();
                     if (controller.GetButtonDown(WebXRController.ButtonTypes.Trigger) || controller.GetButtonDown(WebXRController.ButtonTypes.Grip))
                     {
 
@@ -106,11 +119,13 @@ public class PhysicsRaycaster : MonoBehaviour
             else
             {
                 HideRay();
+                HideUIBox();
             }
         }
         else
         {
             HideRay();
+            HideUIBox();
         }
 
 
@@ -121,13 +136,22 @@ public class PhysicsRaycaster : MonoBehaviour
         }
     }
 
+    void HideUIBox()
+    {
+        if (currentHoverBox != null)
+        {
+            currentHoverBox.HideUIElement();
+            currentHoverBox = null;
+        }
+    }
+
     /// <summary>
     /// Teleports to the position
     /// </summary>
     /// <param name="pos">target position</param>
     void Teleport(Vector3 pos)
     {
-        Debug.Log("Teleport to " + pos);
+        //Debug.Log("Teleport to " + pos);
         transform.parent.position = pos;
     }
 

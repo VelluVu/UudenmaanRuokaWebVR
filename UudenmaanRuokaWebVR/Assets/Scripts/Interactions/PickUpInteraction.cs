@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using WebXR;
 
+/// <summary>
+/// @Author : Veli-Matti Vuoti
+/// 
+/// Handles pick up interactions and other interactions.
+/// </summary>
 public class PickUpInteraction : MonoBehaviour
 {
     private FixedJoint attachJoint = null;
@@ -12,6 +17,7 @@ public class PickUpInteraction : MonoBehaviour
     private Transform t;
     private Vector3 lastPosition;
     private Quaternion lastRotation;
+    public Collider IKHandCollider;
 
     private Animator anim;
     private WebXRController controller;
@@ -66,6 +72,16 @@ public class PickUpInteraction : MonoBehaviour
 
         lastPosition = currentRigidBody.position;
         lastRotation = currentRigidBody.rotation;
+
+        if(currentRigidBody.gameObject.layer == LayerMask.NameToLayer("Handler"))
+        {
+            //Debug.Log("CURRENT RIGIDBODY IS DOOR HANDLER");
+            if (Vector3.Distance(currentRigidBody.transform.parent.position, transform.position) > 0.5f)
+            {
+                //Debug.Log("TOO FAR");
+                Drop();
+            }
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -101,6 +117,13 @@ public class PickUpInteraction : MonoBehaviour
         if (!currentRigidBody)
             return;
 
+        IKHandCollider.isTrigger = true;
+        if (currentRigidBody.gameObject.layer == LayerMask.NameToLayer("Handler"))
+        {
+            
+            currentRigidBody.isKinematic = false;
+            currentRigidBody.transform.parent.GetComponent<DoorHandler>().stop = false;
+        }
         currentRigidBody.MovePosition(t.position);
         attachJoint.connectedBody = currentRigidBody;
 
@@ -116,7 +139,7 @@ public class PickUpInteraction : MonoBehaviour
     {
         teleport.active = false;
         distantPickup = true;
-
+        
         if (!initPickUp)
         {
             initPickUp = true;
@@ -126,7 +149,7 @@ public class PickUpInteraction : MonoBehaviour
             if (!currentRigidBody)
                 return;
 
-           
+            IKHandCollider.isTrigger = true;
             StartCoroutine(Magnetic(other.transform.position, other.attachedRigidbody));
         }
 
@@ -167,7 +190,22 @@ public class PickUpInteraction : MonoBehaviour
 
         if (currentRigidBody)
         {
-
+            if(currentRigidBody.gameObject.layer == LayerMask.NameToLayer("Handler"))
+            {
+                currentRigidBody.transform.parent.GetComponent<DoorHandler>().stop = true;
+                currentRigidBody.transform.localPosition = Vector3.zero;
+                currentRigidBody.transform.localRotation = Quaternion.Euler(Vector3.zero);
+                currentRigidBody.transform.localScale = Vector3.one;
+                currentRigidBody.transform.parent.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                currentRigidBody.transform.parent.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+                currentRigidBody.transform.parent.parent.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                currentRigidBody.transform.parent.parent.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;      
+                currentRigidBody.isKinematic = true;
+                currentRigidBody = null;
+                IKHandCollider.isTrigger = false;
+                teleport.active = true;
+                return;
+            }
             currentRigidBody.velocity = (currentRigidBody.position - lastPosition) / Time.deltaTime;
 
             var deltaRotation = currentRigidBody.rotation * Quaternion.Inverse(lastRotation);
@@ -181,6 +219,7 @@ public class PickUpInteraction : MonoBehaviour
         }
 
         teleport.active = true;
+        IKHandCollider.isTrigger = false;
     }
 
     private Rigidbody GetNearestRigidBody()

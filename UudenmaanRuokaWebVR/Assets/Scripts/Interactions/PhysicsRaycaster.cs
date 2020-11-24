@@ -33,6 +33,8 @@ public class PhysicsRaycaster : MonoBehaviour
     public static event PointerDataDelegate onPointerUp;
 
     public ProductBox currentHoverBox;
+    public Material highlightedMaterial;
+    public Color original;
 
     /// <summary>
     /// Gets the necessary components and hides the linerenderer.
@@ -54,19 +56,15 @@ public class PhysicsRaycaster : MonoBehaviour
     /// Raycasts and drawsray if hits correct layers.
     /// </summary>
     private void Update()
-    {
-
+    {     
         if (active)
         {
             
             if (Physics.Raycast(transform.position, rayDir.forward, out hit, maxDistance, hitLayer))
-            {
-
-        
+            {         
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
-                {
-                    HideRay();
-                    HideUIBox();
+                {                
+                    HideRay();                
                     return;
                 }
 
@@ -74,7 +72,8 @@ public class PhysicsRaycaster : MonoBehaviour
 
                 if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Product"))
                 {
-                    HideUIBox();
+                    HideUIBox();            
+                    Highlight(null);
                     currentHoverBox = hit.collider.gameObject.GetComponent<ProductBox>();
                     currentHoverBox.ShowUIElement();
                 }
@@ -82,6 +81,7 @@ public class PhysicsRaycaster : MonoBehaviour
                 if(hit.collider.gameObject.layer == LayerMask.NameToLayer("UI"))
                 {
                     HideUIBox();
+                    Highlight(null);
                     if (controller.GetButtonDown(WebXRController.ButtonTypes.Trigger) && controller.hand == WebXRControllerHand.RIGHT)      
                         onPointerDown?.Invoke();
                     if (controller.GetButtonUp(WebXRController.ButtonTypes.Trigger) && controller.hand == WebXRControllerHand.RIGHT)
@@ -92,6 +92,7 @@ public class PhysicsRaycaster : MonoBehaviour
                 if (hit.collider.gameObject.CompareTag("Interactable"))
                 {
                     HideUIBox();
+                    Highlight(hit.collider.gameObject.GetComponent<Renderer>().material);                          
                     if (controller.GetButtonDown(WebXRController.ButtonTypes.Trigger))
                     {
                         interaction.DistantPickUp(hit.point, hit.collider);
@@ -106,6 +107,7 @@ public class PhysicsRaycaster : MonoBehaviour
                 if (hit.collider.gameObject.layer == teleMask) // Mozilla WebXR exporter for some reason reguires both down and up checks.
                 {
                     HideUIBox();
+                    Highlight(null);
                     if (controller.GetButtonDown(WebXRController.ButtonTypes.Trigger) || controller.GetButtonDown(WebXRController.ButtonTypes.Grip))
                     {
 
@@ -118,14 +120,12 @@ public class PhysicsRaycaster : MonoBehaviour
             }
             else
             {
-                HideRay();
-                HideUIBox();
+                HideRay();        
             }
         }
         else
         {
-            HideRay();
-            HideUIBox();
+            HideRay();   
         }
 
 
@@ -134,6 +134,25 @@ public class PhysicsRaycaster : MonoBehaviour
             interaction.Drop();
             //Debug.Log("DROPPING OBJECT");
         }
+    }
+
+    void Highlight(Material mat)
+    {
+        if (mat == null)
+        {  
+            return;
+        }
+
+        if (highlightedMaterial != null)
+        {
+            highlightedMaterial.color = original;
+            highlightedMaterial = null;           
+        }
+
+        original = mat.color;
+        highlightedMaterial = mat;
+        highlightedMaterial.color = new Color(mat.color.r, mat.color.g, mat.color.b) * 1.2f;
+       
     }
 
     void HideUIBox()
@@ -172,6 +191,8 @@ public class PhysicsRaycaster : MonoBehaviour
     /// </summary>
     void HideRay()
     {
+        Highlight(null);
+        HideUIBox();
         lineRenderer.positionCount = 0;
     }
 }

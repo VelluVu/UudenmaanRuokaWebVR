@@ -16,6 +16,7 @@ public class DpadMovement : MonoBehaviour
     [Tooltip("Drag the moving head camera here.")]
     public Transform head; // Dont forget to drag in the head!
     public Transform webGLhead;
+    Transform cameraPos;
 
     public float moveSpeed = 1f; // 2f ok move speed
     public float stepTime = 0.3f;
@@ -31,6 +32,12 @@ public class DpadMovement : MonoBehaviour
         body = transform.parent;
         if (head == null)
             Debug.LogError("Drag the moving camera component in to the head variable!");
+
+#if !UNITY_EDITOR && UNITY_WEBGL
+        cameraPos = webGLhead;
+#elif UNITY_EDITOR
+        cameraPos = head;
+#endif
     }
 
     private void Update()
@@ -39,84 +46,37 @@ public class DpadMovement : MonoBehaviour
         c.TryUpdateButtons();
 #endif
 
-        if (c.GetAxis2D(WebXRController.Axis2DTypes.Thumbstick).x > 0.75)
+        if (c.GetAxis2D(WebXRController.Axis2DTypes.Thumbstick).x > 0.75 && !blockTurn)
         {
-            //Debug.Log("Pressing DpadR");
-            if (!blockTurn)
-                StartCoroutine(SmoothlyTurnToRotation(turnDegrees));
+            Turn(turnDegrees);
         }
-        if (c.GetAxis2D(WebXRController.Axis2DTypes.Thumbstick).x < -0.75)
+        if (c.GetAxis2D(WebXRController.Axis2DTypes.Thumbstick).x < -0.75 && !blockTurn)
         {
-            //Debug.Log("Pressing DpadL");
-            if (!blockTurn)
-                StartCoroutine(SmoothlyTurnToRotation(-turnDegrees));
+            Turn(-turnDegrees);
         }
-
-        //StartCoroutine(TurnDelay());
 
 #if !UNITY_EDITOR && UNITY_WEBGL
-         if (c.GetAxis2D(WebXRController.Axis2DTypes.Thumbstick).y < -0.75)
+        if (c.GetAxis2D(WebXRController.Axis2DTypes.Thumbstick).y < -0.75)
         {
-            Move(new Vector3(head.forward.x, 0, head.forward.z).normalized);
-            //Debug.Log("DpadU detected " + c.GetButton("DpadU"));
-            /*
-            if (!stepping)
-                StartCoroutine(Stepping(new Vector3(webGLhead.forward.x, 0, webGLhead.forward.z)));
-                */
+            Move(new Vector3(head.forward.x, 0, head.forward.z).normalized);     
         }
         if (c.GetAxis2D(WebXRController.Axis2DTypes.Thumbstick).y > 0.75)
         {
-            Move(new Vector3(-head.forward.x, 0, -head.forward.z).normalized);
-            //Debug.Log("DpadD detected " + c.GetButton("DpadD"));        
-            /*
-            if (!stepping)
-                StartCoroutine(Stepping(new Vector3(-webGLhead.forward.x, 0, -webGLhead.forward.z)));
-                */
+            Move(new Vector3(-head.forward.x, 0, -head.forward.z).normalized);          
         }
 
 #endif
 #if UNITY_EDITOR
         if (c.GetAxis2D(WebXRController.Axis2DTypes.Thumbstick).y > 0.75)
-        {
-            //Debug.Log("DpadU detected " + c.GetButton("DpadU"));
-            /*if (!stepping)
-                StartCoroutine(Stepping(new Vector3(head.forward.x, 0, head.forward.z)));*/
+        {  
             Move(new Vector3(head.forward.x, 0, head.forward.z).normalized);
         }
         if (c.GetAxis2D(WebXRController.Axis2DTypes.Thumbstick).y < -0.75)
         {
-            //Debug.Log("DpadD detected " + c.GetButton("DpadD"));
-            /*if (!stepping)
-                StartCoroutine(Stepping(new Vector3(-head.forward.x, 0, -head.forward.z)));*/
             Move(new Vector3(-head.forward.x, 0, -head.forward.z).normalized);
         }
 #endif
-
-
-    }
-    IEnumerator TurnDelay()
-    {
-        yield return new WaitForSeconds(turnRate);
-    }
-
-    /// <summary>Slerp Turns player by degrees</summary>
-    IEnumerator SmoothlyTurnToRotation(float turnAmound)
-    {
-        //Debug.Log("Started Turning " + turnAmound);
-        blockTurn = true;
-        float elapsedTime = 0;
-        Quaternion fromAngle = body.rotation;
-        Quaternion toAngle = body.rotation * Quaternion.AngleAxis(turnAmound, Vector3.up);
-        while (elapsedTime < turnRate)
-        {
-            //Debug.Log("Turning in " + turnRate + " elapsedTime " + elapsedTime);
-            body.rotation = Quaternion.Lerp(fromAngle, toAngle, elapsedTime / turnRate);
-            elapsedTime += Time.deltaTime;
-
-            yield return null;
-        }
-        //Debug.Log("Enabling turning again");
-        blockTurn = false;
+      
     }
 
     /// <summary>
@@ -128,45 +88,20 @@ public class DpadMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Lerps player to head look direction with steps
+    /// Turning
     /// </summary>
-    /// <param name="toPos"></param>
-    /// <returns></returns>
-    IEnumerator Stepping(Vector3 toPos)
+    /// <param name="turnAmount"></param>
+    public void Turn(float turnAmount)
     {
-        stepping = true;
-        float t = 0;
-        Vector3 fromPos = body.position;
-        toPos = toPos.normalized;
-        toPos = Vector3.Scale(toPos, Vector3.one * moveSpeed);
-        toPos += fromPos;
-
-        while (t < stepTime)
-        {
-            body.position = Vector3.Lerp(fromPos, toPos, t / stepTime);
-            t += Time.deltaTime;
-            yield return null;
-        }
-        stepping = false;
+        blockTurn = true;
+        body.RotateAround(cameraPos.position, Vector3.up, turnAmount);
+        StartCoroutine(SnapTurnCooldown());
     }
 
-    /// <summary>
-    /// Turns Right by altering body rotation
-    /// </summary>
-    public void TurnRight()
+    public IEnumerator SnapTurnCooldown()
     {
-        //body.rotation = body.rotation * Quaternion.Euler(0,1 * turnDegrees * Time.deltaTime, 0);
-        body.rotation = Quaternion.Lerp(body.rotation, Quaternion.AngleAxis(turnDegrees, Vector3.up), Time.deltaTime);
-    }
-
-    /// <summary>
-    /// Turns Left by altering body rotation
-    /// </summary>
-    public void TurnLeft()
-    {
-
-        //body.rotation = body.rotation * Quaternion.Euler(0, -1 * turnDegrees * Time.deltaTime, 0);
-        body.rotation = Quaternion.Lerp(body.rotation, Quaternion.AngleAxis(-turnDegrees, Vector3.up), Time.deltaTime);
+        yield return new WaitForSeconds(turnRate);
+        blockTurn = false;
     }
 
 }

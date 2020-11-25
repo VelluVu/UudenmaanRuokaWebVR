@@ -16,7 +16,7 @@ public class DpadMovement : MonoBehaviour
     [Tooltip("Drag the moving head camera here.")]
     public Transform head; // Dont forget to drag in the head!
     public Transform webGLhead;
-    Transform cameraPos;
+    public Transform cameraPos;
 
     public float moveSpeed = 1f; // 2f ok move speed
     public float stepTime = 0.3f;
@@ -46,34 +46,34 @@ public class DpadMovement : MonoBehaviour
         c.TryUpdateButtons();
 #endif
 
-        if (c.GetAxis2D(WebXRController.Axis2DTypes.Thumbstick).x > 0.75 && !blockTurn)
+        if (c.GetAxis2D(WebXRController.Axis2DTypes.Thumbstick).x > 0.9 && !blockTurn)
         {
             Turn(turnDegrees);
         }
-        if (c.GetAxis2D(WebXRController.Axis2DTypes.Thumbstick).x < -0.75 && !blockTurn)
+        if (c.GetAxis2D(WebXRController.Axis2DTypes.Thumbstick).x < -0.9 && !blockTurn)
         {
             Turn(-turnDegrees);
         }
 
 #if !UNITY_EDITOR && UNITY_WEBGL
-        if (c.GetAxis2D(WebXRController.Axis2DTypes.Thumbstick).y < -0.75)
+        if (c.GetAxis2D(WebXRController.Axis2DTypes.Thumbstick).y < -0.9)
         {
-            Move(new Vector3(head.forward.x, 0, head.forward.z).normalized);     
+            Move(new Vector3(cameraPos.forward.x, 0, cameraPos.forward.z).normalized);     
         }
-        if (c.GetAxis2D(WebXRController.Axis2DTypes.Thumbstick).y > 0.75)
+        if (c.GetAxis2D(WebXRController.Axis2DTypes.Thumbstick).y > 0.9)
         {
-            Move(new Vector3(-head.forward.x, 0, -head.forward.z).normalized);          
+            Move(new Vector3(-cameraPos.forward.x, 0, -cameraPos.forward.z).normalized);          
         }
 
 #endif
 #if UNITY_EDITOR
-        if (c.GetAxis2D(WebXRController.Axis2DTypes.Thumbstick).y > 0.75)
+        if (c.GetAxis2D(WebXRController.Axis2DTypes.Thumbstick).y > 0.9)
         {  
-            Move(new Vector3(head.forward.x, 0, head.forward.z).normalized);
+            Move(new Vector3(cameraPos.forward.x, 0, cameraPos.forward.z).normalized);
         }
-        if (c.GetAxis2D(WebXRController.Axis2DTypes.Thumbstick).y < -0.75)
+        if (c.GetAxis2D(WebXRController.Axis2DTypes.Thumbstick).y < -0.9)
         {
-            Move(new Vector3(-head.forward.x, 0, -head.forward.z).normalized);
+            Move(new Vector3(-cameraPos.forward.x, 0, -cameraPos.forward.z).normalized);
         }
 #endif
       

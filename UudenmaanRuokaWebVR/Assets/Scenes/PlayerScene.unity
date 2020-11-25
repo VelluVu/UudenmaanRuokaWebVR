@@ -208,7 +208,7 @@ PrefabInstance:
     - target: {fileID: 5856238459533505062, guid: cab26fe456f386c4aa62f63d65e8864a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.102
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5856238459533505062, guid: cab26fe456f386c4aa62f63d65e8864a,
         type: 3}
@@ -286,6 +286,12 @@ BoxCollider:
 --- !u!65 &1994948642 stripped
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 531063887, guid: cab26fe456f386c4aa62f63d65e8864a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1994948640}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1994948643 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5856238459533505062, guid: cab26fe456f386c4aa62f63d65e8864a,
     type: 3}
   m_PrefabInstance: {fileID: 1994948640}
   m_PrefabAsset: {fileID: 0}
@@ -439,6 +445,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WebXRCameraSet
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177446075200362865, guid: d5147450fb23f474c8658d47b40ad534,
+        type: 3}
+      propertyPath: body
+      value: 
+      objectReference: {fileID: 1994948643}
+    - target: {fileID: 9177446075200362865, guid: d5147450fb23f474c8658d47b40ad534,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5147450fb23f474c8658d47b40ad534, type: 3}

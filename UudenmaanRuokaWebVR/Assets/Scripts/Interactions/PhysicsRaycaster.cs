@@ -82,6 +82,25 @@ public class PhysicsRaycaster : MonoBehaviour
                 {
                     HideUIBox();
                     Highlight(null);
+                    Canvas uiCanvas = hit.collider.GetComponent<Canvas>();
+                    if (uiCanvas)
+                    {
+                        Camera eventCam = uiPointer.GetComponent<Camera>();
+                        if (eventCam)
+                        {
+                            if(uiCanvas.worldCamera == null)
+                                uiCanvas.worldCamera = eventCam;
+                        }
+                        else
+                        {
+                            Debug.LogWarning("Unable to find eventCamera from UI-Pointer");
+                        }
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Unable to get canvas component from UI-layer");
+                    }
+
                     if (controller.GetButtonDown(WebXRController.ButtonTypes.Trigger) && controller.hand == WebXRControllerHand.RIGHT)      
                         onPointerDown?.Invoke();
                     if (controller.GetButtonUp(WebXRController.ButtonTypes.Trigger) && controller.hand == WebXRControllerHand.RIGHT)
@@ -108,11 +127,11 @@ public class PhysicsRaycaster : MonoBehaviour
                 {
                     HideUIBox();
                     Highlight(null);
-                    if (controller.GetButtonDown(WebXRController.ButtonTypes.Trigger) || controller.GetButtonDown(WebXRController.ButtonTypes.Grip))
+                    if (controller.GetButtonDown(WebXRController.ButtonTypes.ButtonA))
                     {
 
                     }
-                    if (controller.GetButtonUp(WebXRController.ButtonTypes.Trigger) || controller.GetButtonUp(WebXRController.ButtonTypes.Grip))
+                    if (controller.GetButtonUp(WebXRController.ButtonTypes.ButtonA))
                     {
                         Teleport(hit.point);
                     }
@@ -170,8 +189,15 @@ public class PhysicsRaycaster : MonoBehaviour
     /// <param name="pos">target position</param>
     void Teleport(Vector3 pos)
     {
+        pos = new Vector3(pos.x, 0, pos.z);
+        Vector3 rigPos = transform.parent.position;
         //Debug.Log("Teleport to " + pos);
-        transform.parent.position = pos;
+        Vector3 camPos = GetComponent<DpadMovement>().cameraPos.position;
+        camPos = new Vector3(camPos.x, 0, camPos.z);
+
+        Vector3 camToTransformOffset = camPos - rigPos;
+
+        transform.parent.position = pos - camToTransformOffset;
     }
 
     /// <summary>

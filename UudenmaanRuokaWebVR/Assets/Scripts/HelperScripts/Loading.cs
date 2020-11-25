@@ -24,13 +24,13 @@ public class Loading : MonoBehaviour
 
     private void OnEnable()
     {
-        RoomCallbacks.onSuccessfullyLeftRoom += LeaveRoom;
+        //RoomCallbacks.onSuccessfullyLeftRoom += LeaveRoom;
         RoomCallbacks.onSuccessfullyJoinedRoom += LoadLevel;
         LobbyUI.onJoinRandomRoom += JoinSomeRandomRoom;
     }
     private void OnDisable()
     {
-        RoomCallbacks.onSuccessfullyLeftRoom -= LeaveRoom;
+        //RoomCallbacks.onSuccessfullyLeftRoom -= LeaveRoom;
         RoomCallbacks.onSuccessfullyJoinedRoom -= LoadLevel;
         LobbyUI.onJoinRandomRoom -= JoinSomeRandomRoom;
     }

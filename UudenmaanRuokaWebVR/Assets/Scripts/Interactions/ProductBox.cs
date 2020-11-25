@@ -33,7 +33,7 @@ public class ProductBox : MonoBehaviour
 
     public void InitUIElement(Product product)
     {
-        uiElement = Instantiate(uiElementPrefab, transform.position + Vector3.Scale(new Vector3(0.2f,0.2f,0.2f),transform.forward), transform.rotation);
+        uiElement = Instantiate(uiElementPrefab, transform.position + Vector3.Scale(new Vector3(0.3f,0.3f,0.3f),transform.forward), transform.rotation);
         SetText(uiElement, product.pName, product.pDescription, product.pPrice);
     }
 

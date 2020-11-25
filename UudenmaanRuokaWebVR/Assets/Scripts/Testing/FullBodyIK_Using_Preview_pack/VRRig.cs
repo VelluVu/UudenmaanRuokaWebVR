@@ -41,8 +41,10 @@ public class VRRig : MonoBehaviour
         head.vrTarget = head.webGLVRTarget;
 
 #endif
+        
+        headBodyOffset = transform.position - headConstraint.position;
 
-        headBodyOffset = transform.position - headConstraint.position;    
+
     }
    
     // Update is called once per frame

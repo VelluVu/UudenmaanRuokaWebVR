@@ -18,7 +18,7 @@ public class HandCollision : MonoBehaviour
             hitNormal = collision.GetContact(0).normal;
             Vector3 hitNormalFlatY = new Vector3(hitNormal.x, 0, hitNormal.z);
 
-            Debug.DrawRay(collisionPoint, hitNormalFlatY, Color.red, 5f);
+            //Debug.DrawRay(collisionPoint, hitNormalFlatY, Color.red, 5f);
             //Debug.Log("calculated " + hitNormalFlatY);
             calculated = hitNormalFlatY * multiplier;
             transform.position = calculated;

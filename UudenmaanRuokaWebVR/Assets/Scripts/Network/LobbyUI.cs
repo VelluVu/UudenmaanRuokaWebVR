@@ -17,6 +17,8 @@ public class LobbyUI : MonoBehaviour
     public delegate void LobbyUIDelegate();
     public static event LobbyUIDelegate onJoinRandomRoom;
 
+    bool connectedAndReady = false;
+
     private void Start()
     {
         joinRandomRoom_Button.interactable = false;
@@ -32,14 +34,27 @@ public class LobbyUI : MonoBehaviour
         LobbyCallbacks.onSuccessfullyJoinedLobby -= MakeInteractable;
     }
 
+    private void Update()
+    {
+        if (connectedAndReady)
+        {
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                PressJoinRandomRoom();
+            }
+        }
+    }
+
     public void PressJoinRandomRoom()
     {
+        connectedAndReady = false;
         joinRandomRoom_Button.interactable = false;
-        onJoinRandomRoom?.Invoke();   
+        onJoinRandomRoom?.Invoke();
     }
 
     public void MakeInteractable()
     {
         joinRandomRoom_Button.interactable = true;
+        connectedAndReady = true;
     }
 }

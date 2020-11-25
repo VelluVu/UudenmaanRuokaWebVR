@@ -1,10 +1,8 @@
 ﻿using Photon.Pun;
-using Photon.Pun.Demo.Cockpit.Forms;
 using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 /// <summary>
 /// @Author : Veli-Matti Vuoti
@@ -78,6 +76,7 @@ public class RoomCallbacks : MonoBehaviourPunCallbacks
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         Debug.Log("Player entered the Room " + newPlayer.NickName);
+
 
         //if(PhotonNetwork.IsMasterClient)
         //{

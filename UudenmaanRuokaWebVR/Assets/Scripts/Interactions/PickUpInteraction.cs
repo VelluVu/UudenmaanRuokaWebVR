@@ -82,6 +82,8 @@ public class PickUpInteraction : MonoBehaviour
                 Drop();
             }
         }
+
+        
     }
 
     void OnTriggerEnter(Collider other)
@@ -116,6 +118,10 @@ public class PickUpInteraction : MonoBehaviour
 
         if (!currentRigidBody)
             return;
+
+        BreakHold breakHold = currentRigidBody.GetComponent<BreakHold>();
+        if (breakHold)
+            breakHold.PickUp(this);
 
         IKHandCollider.isTrigger = true;
         if (currentRigidBody.gameObject.layer == LayerMask.NameToLayer("Handler"))
@@ -155,6 +161,9 @@ public class PickUpInteraction : MonoBehaviour
 
         if (currentRigidBody)
         {
+            BreakHold breakHold = currentRigidBody.GetComponent<BreakHold>();
+            if (breakHold)
+                breakHold.PickUp(this);
             lastPosition = currentRigidBody.position;
             lastRotation = currentRigidBody.rotation;
         }
@@ -206,6 +215,7 @@ public class PickUpInteraction : MonoBehaviour
                 teleport.active = true;
                 return;
             }
+
             currentRigidBody.velocity = (currentRigidBody.position - lastPosition) / Time.deltaTime;
 
             var deltaRotation = currentRigidBody.rotation * Quaternion.Inverse(lastRotation);

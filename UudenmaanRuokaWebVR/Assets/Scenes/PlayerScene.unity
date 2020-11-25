@@ -122,74 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &205471826 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5956297690141724786, guid: cab26fe456f386c4aa62f63d65e8864a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1994948640}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &205471827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 205471826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74cbf0516818f34419614cb3c0550312, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!54 &205471828
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 205471826}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 1
---- !u!65 &363465330 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 363465329, guid: cab26fe456f386c4aa62f63d65e8864a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1994948640}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &531063888 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 531063887, guid: cab26fe456f386c4aa62f63d65e8864a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1994948640}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1193763954 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 650461769387580606, guid: cab26fe456f386c4aa62f63d65e8864a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1994948640}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &1193763958
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1193763954}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!4 &1419163823 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9172832241140876384, guid: d5147450fb23f474c8658d47b40ad534,
@@ -208,40 +140,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 9177446075200362856}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1601150802 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3257983300133189658, guid: cab26fe456f386c4aa62f63d65e8864a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1994948640}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1601150803
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1601150802}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74cbf0516818f34419614cb3c0550312, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!54 &1601150804
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1601150802}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 1
 --- !u!1001 &1994948640
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -273,18 +171,6 @@ PrefabInstance:
       propertyPath: cams.Array.data[4]
       value: 
       objectReference: {fileID: 9177446075200362860}
-    - target: {fileID: 1920958272, guid: cab26fe456f386c4aa62f63d65e8864a, type: 3}
-      propertyPath: multiplier
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1920958273, guid: cab26fe456f386c4aa62f63d65e8864a, type: 3}
-      propertyPath: m_Radius
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1920958273, guid: cab26fe456f386c4aa62f63d65e8864a, type: 3}
-      propertyPath: m_Height
-      value: 1.01
-      objectReference: {fileID: 0}
     - target: {fileID: 1994948643, guid: cab26fe456f386c4aa62f63d65e8864a, type: 3}
       propertyPath: rig
       value: 
@@ -309,10 +195,6 @@ PrefabInstance:
       propertyPath: cams.Array.data[4]
       value: 
       objectReference: {fileID: 9177446075200362860}
-    - target: {fileID: 1994948643, guid: cab26fe456f386c4aa62f63d65e8864a, type: 3}
-      propertyPath: multiplier
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 816607234665776991, guid: cab26fe456f386c4aa62f63d65e8864a,
         type: 3}
       propertyPath: m_Name
@@ -326,7 +208,7 @@ PrefabInstance:
     - target: {fileID: 5856238459533505062, guid: cab26fe456f386c4aa62f63d65e8864a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.102
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5856238459533505062, guid: cab26fe456f386c4aa62f63d65e8864a,
         type: 3}
@@ -395,6 +277,24 @@ PrefabInstance:
       objectReference: {fileID: 1419163832}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cab26fe456f386c4aa62f63d65e8864a, type: 3}
+--- !u!65 &1994948641 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 363465329, guid: cab26fe456f386c4aa62f63d65e8864a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1994948640}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1994948642 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 531063887, guid: cab26fe456f386c4aa62f63d65e8864a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1994948640}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1994948643 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5856238459533505062, guid: cab26fe456f386c4aa62f63d65e8864a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1994948640}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5260287688842995662
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -480,12 +380,12 @@ PrefabInstance:
         type: 3}
       propertyPath: IKHandCollider
       value: 
-      objectReference: {fileID: 531063888}
+      objectReference: {fileID: 1994948642}
     - target: {fileID: 6225726472688201860, guid: d5147450fb23f474c8658d47b40ad534,
         type: 3}
       propertyPath: IKHandCollider
       value: 
-      objectReference: {fileID: 363465330}
+      objectReference: {fileID: 1994948641}
     - target: {fileID: 9172973916514512126, guid: d5147450fb23f474c8658d47b40ad534,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -545,6 +445,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WebXRCameraSet
+      objectReference: {fileID: 0}
+    - target: {fileID: 9177446075200362865, guid: d5147450fb23f474c8658d47b40ad534,
+        type: 3}
+      propertyPath: body
+      value: 
+      objectReference: {fileID: 1994948643}
+    - target: {fileID: 9177446075200362865, guid: d5147450fb23f474c8658d47b40ad534,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5147450fb23f474c8658d47b40ad534, type: 3}

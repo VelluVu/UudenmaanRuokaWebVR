@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Does things when hand collides the wall
+/// </summary>
 public class HandCollision : MonoBehaviour
 {
     Vector3 collisionPoint;
@@ -12,7 +15,7 @@ public class HandCollision : MonoBehaviour
     private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Obstacle") || collision.gameObject.layer == LayerMask.NameToLayer("Door"))
-        {
+        {       
             //Debug.Log("Hitting body to Obstacle " + collision.collider.name);
             collisionPoint = collision.GetContact(0).point;
             hitNormal = collision.GetContact(0).normal;
@@ -22,6 +25,8 @@ public class HandCollision : MonoBehaviour
             //Debug.Log("calculated " + hitNormalFlatY);
             calculated = hitNormalFlatY * multiplier;
             transform.position = calculated;
+            transform.rotation = Quaternion.Euler(hitNormal);
+            
         }
     }
 }

@@ -17,6 +17,7 @@ public class DpadMovement : MonoBehaviour
     public Transform head; // Dont forget to drag in the head!
     public Transform webGLhead;
     public Transform cameraPos;
+    VRRig rig;
 
     public float moveSpeed = 1f; // 2f ok move speed
     public float stepTime = 0.3f;
@@ -30,6 +31,8 @@ public class DpadMovement : MonoBehaviour
     {
         c = GetComponent<WebXRController>();
         body = transform.parent;
+        rig = GameObject.FindGameObjectWithTag("IK_Body").GetComponent<VRRig>();
+
         if (head == null)
             Debug.LogError("Drag the moving camera component in to the head variable!");
 
@@ -84,7 +87,8 @@ public class DpadMovement : MonoBehaviour
     /// </summary>
     public void Move(Vector3 toPos)
     {
-        body.position += toPos * moveSpeed * Time.deltaTime;
+        rig.UpdateForward();
+        body.position += toPos * moveSpeed * Time.deltaTime;      
     }
 
     /// <summary>
@@ -95,6 +99,7 @@ public class DpadMovement : MonoBehaviour
     {
         blockTurn = true;
         body.RotateAround(cameraPos.position, Vector3.up, turnAmount);
+        rig.UpdateForward();
         StartCoroutine(SnapTurnCooldown());
     }
 

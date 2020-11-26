@@ -16,6 +16,7 @@ public class PhysicsRaycaster : MonoBehaviour
     public bool active = true;
     WebXRController controller;
     PickUpInteraction interaction;
+    VRRig rig;
 
     public RaycastToUI uiPointer;
     RaycastHit hit;
@@ -49,7 +50,7 @@ public class PhysicsRaycaster : MonoBehaviour
         lineRenderer.positionCount = 0;
         teleMask = LayerMask.NameToLayer("Teleport");
         uiMask = LayerMask.NameToLayer("UI");
-      
+        rig = GameObject.FindGameObjectWithTag("IK_Body").GetComponent<VRRig>();
     }
 
     /// <summary>
@@ -198,6 +199,7 @@ public class PhysicsRaycaster : MonoBehaviour
         Vector3 camToTransformOffset = camPos - rigPos;
 
         transform.parent.position = pos - camToTransformOffset;
+        rig.UpdateForward();
     }
 
     /// <summary>

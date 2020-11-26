@@ -4,6 +4,11 @@ using UnityEngine;
 using TMPro;
 using Photon.Pun;
 
+/// <summary>
+/// @Author : Veli-Matti Vuoti
+/// 
+/// Sends Network Aavatar positions for other users
+/// </summary>
 public class NetworkAvatar : MonoBehaviourPun, IPunObservable
 {
     public Transform editorHMDTarget;
@@ -47,15 +52,18 @@ public class NetworkAvatar : MonoBehaviourPun, IPunObservable
         init = true;
     }
 
+    /// <summary>
+    /// Updates network avatar positions to match the  vr targets positions
+    /// </summary>
     private void FixedUpdate()
     {
         if (init)
-        {          
+        {
+            transform.position = new Vector3(avatarHead.position.x, 0, avatarHead.position.z);
             avatarHead.SetPositionAndRotation(vrHMDTarget.position, vrHMDTarget.rotation);
             avatarLHand.SetPositionAndRotation(leftVRHandTarget.position, leftVRHandTarget.rotation);
             avatarRHand.SetPositionAndRotation(rightVRHandTarget.position, rightVRHandTarget.rotation);
             avatarBody.rotation = Quaternion.Euler(new Vector3(avatarBody.rotation.x, avatarHead.rotation.y, avatarBody.rotation.z));
-            transform.position = new Vector3(avatarHead.position.x, 0, avatarHead.position.z);
         }
     }
 

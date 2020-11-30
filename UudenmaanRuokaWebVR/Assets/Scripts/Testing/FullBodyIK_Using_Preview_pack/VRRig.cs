@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -39,29 +38,31 @@ public class VRRig : MonoBehaviour
     public Transform vrHMDTarget;
     public Transform leftVRHandTarget;
     public Transform rightVRHandTarget;
+    public Transform lShoulder;
+    public Transform rShoulder;
 
     // Start is called before the first frame update
     void Awake()
     {
+       
+#if UNITY_EDITOR
         playerRoot = GameObject.FindGameObjectWithTag("Player").transform;
         editorHMDTarget = playerRoot.GetChild(2).GetChild(0);
         webGLHMDTarget = playerRoot.GetChild(2).GetChild(1);
         leftVRHandTarget = playerRoot.GetChild(0);
         rightVRHandTarget = playerRoot.GetChild(1);
-
         head.vrTarget = editorHMDTarget;
+#elif !UNITY_EDITOR && UNITY_WEBGL
+        head.vrTarget = head.webGLVRTarget;
+#endif
         head.webGLVRTarget = webGLHMDTarget;
         leftHand.vrTarget = leftVRHandTarget;
         rightHand.vrTarget = rightVRHandTarget;
 
-#if !UNITY_EDITOR && UNITY_WEBGL
-        head.vrTarget = head.webGLVRTarget;
 
-#endif
+
 
         headBodyOffset = transform.position - headConstraint.position;
-
-
     }
    
     // Update is called once per frame
@@ -76,11 +77,47 @@ public class VRRig : MonoBehaviour
             //transform.forward = Vector3.Lerp(transform.forward, new Vector3(headConstraint.forward.x, transform.forward.y, headConstraint.forward.z), Time.fixedDeltaTime);
             UpdateForward();
         }
+
+        CheckShoulderDistanceToController();
         //Debug.Log("transform pos : " + transform.position + " VR Camera local pos : " + head.vrTarget.localPosition + " VR Camera pos : " + head.vrTarget.position + " Head constraint position : " + headConstraint.position + " Head pos : " + head.vrTarget.position );
 
         head.Map();
         leftHand.Map();
         rightHand.Map();
+    }
+
+    public void CheckShoulderDistanceToController()
+    {
+
+        float lElbowDistance = Vector3.Distance(lShoulder.position, leftHand.vrTarget.position);
+        float rElbowDistance = Vector3.Distance(rShoulder.position, rightHand.vrTarget.position);
+
+        if (lElbowDistance > 0.70f)
+        {
+            float dotProductl = Vector3.Dot(leftHand.vrTarget.position, transform.up);
+            //Debug.Log(dotProductl);
+            if (dotProductl > 1.2f)
+            {            
+                //Debug.Log("Left hand reaching too far");
+                ReachToTarget(leftHand.vrTarget);
+            }
+        }
+        if (rElbowDistance > 0.70f)
+        {
+            float dotProductr = Vector3.Dot(rightHand.vrTarget.position, transform.up);
+            //Debug.Log(dotProductr);
+            if (dotProductr > 1.2f)
+            {
+                //Debug.Log("Right hand reaching too far");
+                ReachToTarget(rightHand.vrTarget);
+            }
+        }
+    }
+
+    public void ReachToTarget(Transform target)
+    {
+        Vector3 targetV = new Vector3(target.forward.x, transform.forward.y, target.forward.z);
+        StartCoroutine(LerpPosition(targetV, 0.2f));
     }
 
     /// <summary>

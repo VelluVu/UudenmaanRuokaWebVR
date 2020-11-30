@@ -35,12 +35,14 @@ public class PositionToZero : MonoBehaviour
 
     private void SceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
+#if UNITY_EDITOR
         Debug.Log("Sceneloaded " + arg0.name);
-        if (arg0.name == "LobbyScene")
+        if (arg0.name == "LobbyScene" || arg0.name == "MainScene")
         {
             Debug.Log("Lobby loaded setting player position...");
             StartCoroutine(Position());
         }
+#endif
     }
 
     private IEnumerator Position()

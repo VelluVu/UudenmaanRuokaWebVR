@@ -4,6 +4,11 @@ using UnityEngine;
 using Photon.Pun;
 using System.IO;
 
+/// <summary>
+/// @Author : Veli-Matti Vuoti
+/// 
+/// Spawns the avatar
+/// </summary>
 public class AvatarSpawner : MonoBehaviourPun
 {
 
@@ -26,7 +31,7 @@ public class AvatarSpawner : MonoBehaviourPun
     {
         Debug.Log("Spawning " + PlayerInformation.Name + " Network Avatar!");
         avatar = PhotonNetwork.Instantiate(Path.Combine("Prefabs",networkAvatarPrefab.name), Vector3.zero, Quaternion.identity);      
-        avatar.GetComponent<NetworkAvatar>().InitAvatar();      
+        avatar.GetComponent<NetworkAvatar>().InitAvatar();
     }
 
     public void LeftRoom()

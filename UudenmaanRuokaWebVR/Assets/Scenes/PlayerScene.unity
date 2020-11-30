@@ -57,7 +57,7 @@ LightmapSettings:
     serializedVersion: 12
     m_Resolution: 2
     m_BakeResolution: 40
-    m_AtlasSize: 1024
+    m_AtlasSize: 2048
     m_AO: 0
     m_AOMaxDistance: 1
     m_CompAOExponent: 1
@@ -72,12 +72,12 @@ LightmapSettings:
     m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
-    m_BakeBackend: 1
+    m_BakeBackend: 2
     m_PVRSampling: 1
-    m_PVRDirectSampleCount: 32
-    m_PVRSampleCount: 512
+    m_PVRDirectSampleCount: 128
+    m_PVRSampleCount: 2048
     m_PVRBounces: 2
-    m_PVREnvironmentSampleCount: 256
+    m_PVREnvironmentSampleCount: 1024
     m_PVREnvironmentReferencePointCount: 2048
     m_PVRFilteringMode: 1
     m_PVRDenoiserTypeDirect: 1
@@ -96,7 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
-    m_LightProbeSampleCountMultiplier: 4
+    m_LightProbeSampleCountMultiplier: 16
   m_LightingDataAsset: {fileID: 112000004, guid: a78dd6352a2bb834791f98753f1407e2,
     type: 2}
   m_UseShadowmask: 1
@@ -275,6 +275,31 @@ PrefabInstance:
       propertyPath: rightHand.vrTarget
       value: 
       objectReference: {fileID: 1419163832}
+    - target: {fileID: 8866000782809804322, guid: cab26fe456f386c4aa62f63d65e8864a,
+        type: 3}
+      propertyPath: editorHMDTarget
+      value: 
+      objectReference: {fileID: 1419163823}
+    - target: {fileID: 8866000782809804322, guid: cab26fe456f386c4aa62f63d65e8864a,
+        type: 3}
+      propertyPath: webGLHMDTarget
+      value: 
+      objectReference: {fileID: 9177446075200362859}
+    - target: {fileID: 8866000782809804322, guid: cab26fe456f386c4aa62f63d65e8864a,
+        type: 3}
+      propertyPath: playerRoot
+      value: 
+      objectReference: {fileID: 9177446075200362858}
+    - target: {fileID: 8866000782809804322, guid: cab26fe456f386c4aa62f63d65e8864a,
+        type: 3}
+      propertyPath: leftVRHandTarget
+      value: 
+      objectReference: {fileID: 1419163833}
+    - target: {fileID: 8866000782809804322, guid: cab26fe456f386c4aa62f63d65e8864a,
+        type: 3}
+      propertyPath: rightVRHandTarget
+      value: 
+      objectReference: {fileID: 1419163832}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cab26fe456f386c4aa62f63d65e8864a, type: 3}
 --- !u!65 &1994948641 stripped
@@ -451,11 +476,6 @@ PrefabInstance:
       propertyPath: body
       value: 
       objectReference: {fileID: 1994948643}
-    - target: {fileID: 9177446075200362865, guid: d5147450fb23f474c8658d47b40ad534,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5147450fb23f474c8658d47b40ad534, type: 3}
 --- !u!20 &9177446075200362857 stripped

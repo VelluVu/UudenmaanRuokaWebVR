@@ -1,0 +1,337 @@
+fileFormatVersion: 2
+guid: 98806cdf3f92a334baf149e8b533b6d0
+ModelImporter:
+  serializedVersion: 19301
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: A4_stand_keski
+    second: {fileID: 2100000, guid: 0d438c4afc5b40b428284079a9525159, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: A4_stand_oik
+    second: {fileID: 2100000, guid: 9f5f2b9535bcb2b4eaad3a817e324c90, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: A4_stand_vas
+    second: {fileID: 2100000, guid: 56fbdecf4000f094baaa578e77833048, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: AA_Noutopiste
+    second: {fileID: 2100000, guid: 3e7747004b26e534395699b8c936c7e6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Commuti
+    second: {fileID: 2100000, guid: 21fa2259253c73d43b4d03e191b149d3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hylly
+    second: {fileID: 2100000, guid: 9a9163f6f5021a544aff20ca319bafb8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hylly_korotettu
+    second: {fileID: 2100000, guid: 2786117c493ef1847891dae50b7fa531, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hylly_pitka
+    second: {fileID: 2100000, guid: 4e2839c9418b18d42b3182087654f6c5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Keskiovi
+    second: {fileID: 2100000, guid: a56b824a926c4c940ba56db37bf4422b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Keskiovi_kahva
+    second: {fileID: 2100000, guid: 57010abc9ef5c1c4db95e7f260279958, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Kylmakaappi_levea
+    second: {fileID: 2100000, guid: d3b94327647809f45ad6428b65a4e034, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Kylmakaappi_levea_lasi_oik
+    second: {fileID: 2100000, guid: 06579458557ae02408b37c9f8b622089, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Kylmakaappi_levea_lasi_vas
+    second: {fileID: 2100000, guid: 0378778c073a50e4ab72d973247b6aaa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Kylmakaappi_levea_ovi_oik
+    second: {fileID: 2100000, guid: aad3661c15ab4fd4dbebfbedad65ed22, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Kylmakaappi_levea_ovi_vas
+    second: {fileID: 2100000, guid: 3a4d0a8c28e7a4340b8f378981a85077, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Kylmakaappi_taka
+    second: {fileID: 2100000, guid: b43423fac72bf48458282f17130e282c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Kylmakaappi_taka.001
+    second: {fileID: 2100000, guid: abb0e3db4515aef42b9774dc557eea77, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Kylmakaappi_taka_lasi
+    second: {fileID: 2100000, guid: dea88dc2dfd3f50489ad64cceb44043a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Kylmakaappi_taka_lasi.001
+    second: {fileID: 2100000, guid: c857af79c79ce0b44bc46bbc0dca61e0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Kylmakaappi_taka_ovi
+    second: {fileID: 2100000, guid: 6d6c025db91a6194ba87d7bf6d716e63, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Kylmakaappi_taka_ovi.001
+    second: {fileID: 2100000, guid: 2f0db13ef7069c742bf5764adb2d7ce2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mainosteline_500x700
+    second: {fileID: 2100000, guid: 57bcbc5525909b84c892dd9fb7a03dd6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mainosteline_500x700_etu
+    second: {fileID: 2100000, guid: 5694c8d737d04fa4285ab1504abfbe01, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mainosteline_500x700_taka
+    second: {fileID: 2100000, guid: c13228607ced37643bc9bf48f448e9cd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pakastearkku
+    second: {fileID: 2100000, guid: 7c18d1dfa3f374c40b63d6b2ff2b5ee8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pakastearkku_lasi_oik
+    second: {fileID: 2100000, guid: 02d468ead8478f7468bdbda1c49c6667, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pakastearkku_lasi_vas
+    second: {fileID: 2100000, guid: 549243dbb5d6a7b4aad70aa00e5a0853, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pakastearkku_ovi_oik
+    second: {fileID: 2100000, guid: d39619a79e0ab67478608d57cc50dbfa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pakastearkku_ovi_vas
+    second: {fileID: 2100000, guid: c9193bf0988d9bb4ca25fbcd530d5663, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Puu_paperiteline
+    second: {fileID: 2100000, guid: dc5c20ae855b0374e9efd4ff2110e1a4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Puu_paperiteline.007
+    second: {fileID: 2100000, guid: 9bf056bad0c33924386798e38b85cdd8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Puu_paperiteline.008
+    second: {fileID: 2100000, guid: 5ed2e70807750b44ea51461de4de1a1b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Puu_paperiteline.009
+    second: {fileID: 2100000, guid: 97ff7a5ea22bd7d4db1d2b5d9380dfb6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Puu_paperiteline.010
+    second: {fileID: 2100000, guid: fc92ae63db04ae94ab5d0098b410239c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Puu_paperiteline.011
+    second: {fileID: 2100000, guid: 4f4491117cc263b4cbf61759c3937038, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Puu_paperiteline.012
+    second: {fileID: 2100000, guid: 293070e72f949de478194151a42a2b5c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Puulaatikko
+    second: {fileID: 2100000, guid: 3e0dadb476cefb545a5f7961d00eb25b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TV-seina
+    second: {fileID: 2100000, guid: e00ce0bedb30108489a43dd26b814c9f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Takaovi.001
+    second: {fileID: 2100000, guid: c00b5c8f93dcd444a8ebdcb57f5f8ac4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Taulut
+    second: {fileID: 2100000, guid: 2a9c5a23a5c06cb4894e3458e172aba6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tiski_etuosa
+    second: {fileID: 2100000, guid: 236738103fd7a7e4f8c9d99b87493777, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tiski_takaosa
+    second: {fileID: 2100000, guid: ead6412c57fd15c46b134177c06000e8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tv
+    second: {fileID: 2100000, guid: e197f1eea9d2db84c945ecc676de66dd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Valo_etu_eka
+    second: {fileID: 2100000, guid: 48f9e23518c43ec4c9538877647d0e10, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Valo_etu_eka.001
+    second: {fileID: 2100000, guid: 2b63591e784084d47945cd3271e8b0b5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Valo_etu_eka.002
+    second: {fileID: 2100000, guid: 3d8255e802a1ff74281691619fb9d8cf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Valo_etu_eka.003
+    second: {fileID: 2100000, guid: 132d5e3d879cb494b945857a48a7a5cf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Valo_kisko
+    second: {fileID: 2100000, guid: 415e3855bfd00004faadfee2f5ab4565, type: 2}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

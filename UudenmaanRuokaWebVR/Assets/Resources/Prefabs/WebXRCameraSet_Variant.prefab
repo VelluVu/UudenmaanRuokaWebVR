@@ -69,18 +69,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9176487843071660434}
   m_Enabled: 1
---- !u!114 &9177446075200362860
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9176487843071660434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63536e274c7449c40830260ea415e632, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8421560560078104023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,6 +79,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26bf2419e7a528949b162460cc52678e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9177446075200362860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9176487843071660434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63536e274c7449c40830260ea415e632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &9177446075200362865
@@ -231,6 +231,7 @@ MonoBehaviour:
   c: {fileID: 0}
   head: {fileID: 9172832241140876384}
   webGLhead: {fileID: 9174866338494427868}
+  cameraPos: {fileID: 0}
   moveSpeed: 1
   stepTime: 0.3
   turnDegrees: 45
@@ -382,6 +383,7 @@ MonoBehaviour:
   c: {fileID: 0}
   head: {fileID: 9172832241140876384}
   webGLhead: {fileID: 9174866338494427868}
+  cameraPos: {fileID: 0}
   moveSpeed: 1
   stepTime: 0.3
   turnDegrees: 45

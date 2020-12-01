@@ -1,7 +1,5 @@
 ﻿using Photon.Pun;
 using Photon.Realtime;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -32,6 +30,7 @@ public class RoomCallbacks : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log(PhotonNetwork.NickName + " Joined in to the Room " + PhotonNetwork.CurrentRoom.Name);
+        // Successfully joined room event invoked for loading level etc..
         onSuccessfullyJoinedRoom?.Invoke();
 
         /*if (PhotonNetwork.IsMasterClient)
@@ -59,6 +58,7 @@ public class RoomCallbacks : MonoBehaviourPunCallbacks
     {
         Debug.Log("Joining random Room failed " + message);
 
+        // Failed to join random room will create new room
         PhotonNetwork.JoinOrCreateRoom(firstRoomName, CreateDefaultRoomOptions(), TypedLobby.Default);
     }
 
@@ -70,6 +70,7 @@ public class RoomCallbacks : MonoBehaviourPunCallbacks
     public override void OnLeftRoom()
     {
         Debug.Log("Left the Room");
+        // Invokes event 
         onSuccessfullyLeftRoom?.Invoke();
     }
 
@@ -96,6 +97,9 @@ public class RoomCallbacks : MonoBehaviourPunCallbacks
         }
     }
 
+    /// <summary>
+    /// This function is remade in Loading class not used here can be removed!
+    /// </summary>
     public void LoadLevel()
     {
         if(!PhotonNetwork.IsMasterClient)

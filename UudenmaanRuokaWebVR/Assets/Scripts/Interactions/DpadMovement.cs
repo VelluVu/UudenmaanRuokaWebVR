@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using WebXR;
 
@@ -103,6 +102,10 @@ public class DpadMovement : MonoBehaviour
         StartCoroutine(SnapTurnCooldown());
     }
 
+    /// <summary>
+    /// To limit turning input
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator SnapTurnCooldown()
     {
         yield return new WaitForSeconds(turnRate);

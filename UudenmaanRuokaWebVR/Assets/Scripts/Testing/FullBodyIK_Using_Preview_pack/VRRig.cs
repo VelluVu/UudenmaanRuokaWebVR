@@ -21,7 +21,9 @@ public class VRMap
 }
 
 /// <summary>
-/// This class is moving the body with the player,
+/// @Author : Veli-Matti Vuoti
+/// 
+/// This class is moving the IK-body with the player,
 /// </summary>
 public class VRRig : MonoBehaviour
 {
@@ -59,9 +61,6 @@ public class VRRig : MonoBehaviour
         leftHand.vrTarget = leftVRHandTarget;
         rightHand.vrTarget = rightVRHandTarget;
 
-
-
-
         headBodyOffset = transform.position - headConstraint.position;
     }
    
@@ -86,6 +85,9 @@ public class VRRig : MonoBehaviour
         rightHand.Map();
     }
 
+    /// <summary>
+    /// Check if player is trying to reach too far with hand and then body needs to turn to reach the point.
+    /// </summary>
     public void CheckShoulderDistanceToController()
     {
 
@@ -129,6 +131,12 @@ public class VRRig : MonoBehaviour
         StartCoroutine(LerpPosition(targetV, 0.2f));
     }
 
+    /// <summary>
+    /// Lerp object transform forward to given first parameter Vector3 position in given second parameter Float duration.
+    /// </summary>
+    /// <param name="targetPosition">Second parameter for Lerp Function as target lerp position</param>
+    /// <param name="duration">Duration it takes to lerp</param>
+    /// <returns></returns>
     IEnumerator LerpPosition(Vector3 targetPosition, float duration)
     {
         float time = 0;

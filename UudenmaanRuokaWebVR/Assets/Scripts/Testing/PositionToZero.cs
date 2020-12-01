@@ -1,9 +1,12 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// @Author: Veli-Matti Vuoti
+/// 
+/// Positions the player to 0 0 0 on game start.
+/// </summary>
 public class PositionToZero : MonoBehaviour
 {
     public Transform editorCam;

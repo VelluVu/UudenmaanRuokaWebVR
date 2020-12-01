@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 using Photon.Pun;
 
 /// <summary>
 /// @Author : Veli-Matti Vuoti
 /// 
-/// Sends Network Aavatar positions for other users
+/// Sends Network Avatar positions for other users
 /// </summary>
 public class NetworkAvatar : MonoBehaviourPun, IPunObservable
 {
@@ -28,6 +26,11 @@ public class NetworkAvatar : MonoBehaviourPun, IPunObservable
 
     bool init = false;
 
+    /// <summary>
+    /// Find transform references and set up the correct camera etc...
+    /// ! FOUND NOT WORKIG IN WEBGL DIFFERENT HIERARCHY THERE !
+    /// TODO: FIGURE OUT WEBGL HIERARCHY FOR CAMERA SET AND FIX!
+    /// </summary>
     public void InitAvatar()
     {
         playerRoot = GameObject.FindGameObjectWithTag("Player").transform;
@@ -57,7 +60,7 @@ public class NetworkAvatar : MonoBehaviourPun, IPunObservable
     /// </summary>
     private void FixedUpdate()
     {
-        if (init)
+        if (init) // if we are ready to update positions
         {
             transform.position = new Vector3(avatarHead.position.x, 0, avatarHead.position.z);
             avatarHead.SetPositionAndRotation(vrHMDTarget.position, vrHMDTarget.rotation);
@@ -67,6 +70,9 @@ public class NetworkAvatar : MonoBehaviourPun, IPunObservable
         }
     }
 
+    /// <summary>
+    /// Destroy this avatar
+    /// </summary>
     public void Kill()
     {
         Destroy(gameObject);
@@ -74,8 +80,9 @@ public class NetworkAvatar : MonoBehaviourPun, IPunObservable
 
     void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        if (init)
+        if (init) //if we are ready to stream data
         {
+            // Sends the position and rotation data through network
             if (stream.IsWriting)
             {
                 stream.SendNext(transform.position);
@@ -87,8 +94,8 @@ public class NetworkAvatar : MonoBehaviourPun, IPunObservable
                 stream.SendNext(avatarRHand.rotation);
                 stream.SendNext(avatarBody.position);
                 stream.SendNext(avatarBody.rotation);
-            }
-            else
+            } // Receives and casts the network data if reading
+            else 
             {
                 transform.position = (Vector3)stream.ReceiveNext();
                 avatarHead.position = (Vector3)stream.ReceiveNext();

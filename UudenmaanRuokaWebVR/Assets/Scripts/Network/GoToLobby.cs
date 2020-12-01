@@ -1,9 +1,13 @@
 ﻿using Photon.Pun;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// @Author: Veli-Matti Vuoti
+/// 
+/// Handles player input to move back to lobby.
+/// </summary>
 public class GoToLobby : MonoBehaviour
 {
 

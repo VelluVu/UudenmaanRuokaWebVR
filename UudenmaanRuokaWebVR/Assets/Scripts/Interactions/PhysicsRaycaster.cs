@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using UnityEngine;
 using WebXR;
 
 /// <summary>
@@ -54,7 +51,7 @@ public class PhysicsRaycaster : MonoBehaviour
     }
 
     /// <summary>
-    /// Raycasts and drawsray if hits correct layers.
+    /// Raycasts and drawsray if hits correct layers, aswell triggering the functionality for hit object.
     /// </summary>
     private void Update()
     {     
@@ -63,14 +60,17 @@ public class PhysicsRaycaster : MonoBehaviour
             
             if (Physics.Raycast(transform.position, rayDir.forward, out hit, maxDistance, hitLayer))
             {         
+                // HITS OBSTACLE LAYER HIDES RAY AND RETURNS FROM FUNCTION
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
                 {                
                     HideRay();                
                     return;
                 }
 
+                // Draws ray when hits other layers than obstacle
                 DrawRay(transform.position, hit.point);
 
+                // Hits the Product and shows the ui-element
                 if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Product"))
                 {
                     HideUIBox();            
@@ -78,7 +78,8 @@ public class PhysicsRaycaster : MonoBehaviour
                     currentHoverBox = hit.collider.gameObject.GetComponent<ProductBox>();
                     currentHoverBox.ShowUIElement();
                 }
-        
+                
+                // Hits the UI checks the canvas references and triggers event for VRInputModule on trigger press.
                 if(hit.collider.gameObject.layer == LayerMask.NameToLayer("UI"))
                 {
                     HideUIBox();
@@ -108,7 +109,7 @@ public class PhysicsRaycaster : MonoBehaviour
                         onPointerUp?.Invoke();
                 }
                
-                //Distant picks up interactable if pointing interactable
+                //Hits interactable layer. Distant picks up interactable if pointing interactable
                 if (hit.collider.gameObject.CompareTag("Interactable"))
                 {
                     HideUIBox();
@@ -124,6 +125,7 @@ public class PhysicsRaycaster : MonoBehaviour
                     }
                 }
 
+                // Hits teleport layer allows teleporting
                 if (hit.collider.gameObject.layer == teleMask) // Mozilla WebXR exporter for some reason reguires both down and up checks.
                 {
                     HideUIBox();
@@ -148,7 +150,7 @@ public class PhysicsRaycaster : MonoBehaviour
             HideRay();   
         }
 
-
+        //Drop if holding object and releasing trigger
         if (controller.GetButtonUp(WebXRController.ButtonTypes.Trigger) && interaction.HoldingObj())
         {
             interaction.Drop();
@@ -156,10 +158,20 @@ public class PhysicsRaycaster : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Highlights the object material if null returns.
+    /// </summary>
+    /// <param name="mat">Object Material to highlight</param>
     void Highlight(Material mat)
     {
         if (mat == null)
-        {  
+        {
+            /*
+            if (highlightedMaterial != null)
+            {
+                highlightedMaterial.color = original;
+                highlightedMaterial = null;
+            }*/
             return;
         }
 
@@ -175,6 +187,9 @@ public class PhysicsRaycaster : MonoBehaviour
        
     }
 
+    /// <summary>
+    /// Hide UI-BOX UI-element
+    /// </summary>
     void HideUIBox()
     {
         if (currentHoverBox != null)
@@ -215,7 +230,7 @@ public class PhysicsRaycaster : MonoBehaviour
     }
 
     /// <summary>
-    /// Removes the line
+    /// Removes the line and hides the UI-Box
     /// </summary>
     void HideRay()
     {

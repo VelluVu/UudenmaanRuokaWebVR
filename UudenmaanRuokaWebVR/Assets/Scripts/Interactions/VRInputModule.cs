@@ -4,6 +4,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using WebXR;
 
+/// <summary>
+/// @Author: Veli-Matti Vuoti
+/// 
+/// Makes click events on UI work with Unity UI-Element events.
+/// Currently contains functionality for simple Button.
+/// Cannot check trigger input here because then other trigger input checks would break need to do through event.
+/// </summary>
 public class VRInputModule : BaseInputModule
 {
     public Camera cam;
@@ -30,11 +37,17 @@ public class VRInputModule : BaseInputModule
         PhysicsRaycaster.onPointerDown -= PointerDown;
     }
 
+    /// <summary>
+    /// Trigger was pressed
+    /// </summary>
     public void PointerDown()
     {
         pointerPress = true;
     }
 
+    /// <summary>
+    /// Trigger was released
+    /// </summary>
     public void PointerUp()
     {
         pointerRelease = true;

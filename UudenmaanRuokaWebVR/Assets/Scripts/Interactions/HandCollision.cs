@@ -1,9 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// Does things when hand collides the wall
+/// TODO: 
+/// Unparent hand model remove target from IK.
+/// position hand model against obstacle.
+/// Reparent hand model and add IK-target after VR-target  is no longer inside object.
 /// </summary>
 public class HandCollision : MonoBehaviour
 {

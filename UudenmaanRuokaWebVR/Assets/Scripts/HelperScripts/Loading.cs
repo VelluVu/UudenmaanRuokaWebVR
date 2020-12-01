@@ -1,11 +1,17 @@
 ﻿using Photon.Pun;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// @Author: Veli-Matti Vuoti
+/// 
+/// Loads necessary scenes and does some other scene loading aswell
+/// </summary>
 public class Loading : MonoBehaviour
 {
+    /// <summary>
+    /// Are all necessary components loaded, player, network, lobby.
+    /// </summary>
     public static bool LoadedNecessaryComponents = false;
     public void Awake()
     {
@@ -35,26 +41,41 @@ public class Loading : MonoBehaviour
         LobbyUI.onJoinRandomRoom -= JoinSomeRandomRoom;
     }
 
+    /// <summary>
+    /// Loads the player scene
+    /// </summary>
     public void LoadPlayer()
     {
         SceneManager.LoadScene("PlayerScene", LoadSceneMode.Additive);
     }
 
+    /// <summary>
+    /// Loads the network scene
+    /// </summary>
     public void LoadNetwork()
     {
         SceneManager.LoadSceneAsync("NetworkScene", LoadSceneMode.Additive);
     }
 
+    /// <summary>
+    /// Loads the lobby scene
+    /// </summary>
     public void LoadLobby()
     {
         SceneManager.LoadSceneAsync("LobbyScene", LoadSceneMode.Additive);
     }
 
+    /// <summary>
+    /// Leaves the Room
+    /// </summary>
     public void LeaveRoom()
     {
         PhotonNetwork.LeaveRoom();
     }
 
+    /// <summary>
+    /// Loads the Room Scene
+    /// </summary>
     public void LoadLevel()
     {
         if (PhotonNetwork.CurrentRoom.PlayerCount == 1)

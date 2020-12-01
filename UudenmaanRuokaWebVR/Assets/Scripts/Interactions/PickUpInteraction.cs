@@ -81,9 +81,7 @@ public class PickUpInteraction : MonoBehaviour
                 //Debug.Log("TOO FAR");
                 Drop();
             }
-        }
-
-        
+        } 
     }
 
     void OnTriggerEnter(Collider other)
@@ -112,6 +110,9 @@ public class PickUpInteraction : MonoBehaviour
         return currentRigidBody;
     }
 
+    /// <summary>
+    /// Picks up the closest object
+    /// </summary>
     public void Pickup()
     {
         currentRigidBody = GetNearestRigidBody();
@@ -169,6 +170,12 @@ public class PickUpInteraction : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Lerps the object close to controller position
+    /// </summary>
+    /// <param name="startPos"></param>
+    /// <param name="other"></param>
+    /// <returns></returns>
     IEnumerator Magnetic(Vector3 startPos, Rigidbody other)
     {
         float elapsedTime = 0;
@@ -190,6 +197,9 @@ public class PickUpInteraction : MonoBehaviour
         attachJoint.connectedBody = currentRigidBody;
     }
 
+    /// <summary>
+    /// Drops the object
+    /// </summary>
     public void Drop()
     {
 
@@ -232,6 +242,10 @@ public class PickUpInteraction : MonoBehaviour
         IKHandCollider.isTrigger = false;
     }
 
+    /// <summary>
+    /// Gets the nearest rigidbody
+    /// </summary>
+    /// <returns></returns>
     private Rigidbody GetNearestRigidBody()
     {
         Rigidbody nearestRigidBody = null;

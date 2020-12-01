@@ -1,8 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Video;
 
+/// <summary>
+/// @Author: Veli-Matti Vuoti
+/// 
+/// Sets up reference URL for video player, so it works in WebGL.
+/// </summary>
 public class VideoPlayerReference : MonoBehaviour
 {
     VideoPlayer vp;
